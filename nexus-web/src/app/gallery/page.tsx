@@ -1,118 +1,182 @@
+"use client";
+
 import { Metadata } from "next";
 import Image from "next/image";
-import { PageSection } from "~/components/sections/PageSection";
-
-export const metadata: Metadata = {
-  title: "Галерея — NEXUS",
-  description: "Фотографии пространства NEXUS и проведенных мероприятий."
-};
+import { useState } from "react";
+import { ImageLightbox } from "~/components/ui/ImageLightbox";
 
 const photos = [
-  "photo_2025-09-20 00.35.13.jpeg",
-  "photo_2025-09-20 00.35.14.jpeg",
-  "photo_2025-09-20 00.35.16.jpeg",
-  "photo_2025-09-20 00.35.17.jpeg",
-  "photo_2025-09-20 00.35.18.jpeg",
-  "photo_2025-09-20 00.35.19.jpeg",
-  "photo_2025-09-20 00.35.22.jpeg",
-  "photo_2025-09-20 00.35.23.jpeg",
+  "/photo_2025-09-20 00.35.13.jpeg",
+  "/photo_2025-09-20 00.35.14.jpeg",
+  "/photo_2025-09-20 00.35.16.jpeg",
+  "/photo_2025-09-20 00.35.17.jpeg",
+  "/photo_2025-09-20 00.35.18.jpeg",
+  "/photo_2025-09-20 00.35.19.jpeg",
+  "/photo_2025-09-20 00.35.22.jpeg",
+  "/photo_2025-09-20 00.35.23.jpeg",
 ];
 
 export default function GalleryPage() {
+  const [lightboxOpen, setLightboxOpen] = useState(false);
+  const [lightboxIndex, setLightboxIndex] = useState(0);
+
+  const openLightbox = (index: number) => {
+    setLightboxIndex(index);
+    setLightboxOpen(true);
+  };
+
   return (
-    <div className="layout-container grid gap-24 py-16">
-      <header className="section-heading">
-        <span className="text-xs font-mono uppercase tracking-[0.4em] text-white/50">Галерея</span>
-        <h1 className="text-5xl font-display uppercase tracking-tighter">
-          Фотографии пространства
-        </h1>
-        <p className="max-w-3xl text-lg text-white/70">
-          Интерьеры, оборудование и атмосфера NEXUS. Каждое мероприятие создает
-          уникальную визуальную историю в нашем пространстве.
-        </p>
-      </header>
-
-      <PageSection
-        id="photos"
-        eyebrow="Интерьеры"
-        title="Пространство NEXUS"
-        description="Современные интерьеры, профессиональное оборудование и гибкая планировка для любых форматов мероприятий."
-      >
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {photos.map((photo, index) => (
-            <div
-              key={index}
-              className="group relative aspect-[4/3] overflow-hidden border-grid cursor-pointer"
-            >
-              <Image
-                src={`/${photo}`}
-                alt={`Пространство NEXUS ${index + 1}`}
-                fill
-                className="object-cover transition-all duration-700 group-hover:scale-110 group-hover:brightness-110"
-                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-neutral-950/60 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-            </div>
-          ))}
-        </div>
-      </PageSection>
-
-      <PageSection
-        id="capabilities"
-        eyebrow="Возможности"
-        title="Форматы использования"
-        description=""
-      >
-        <div className="grid gap-8 md:grid-cols-2">
-          <div className="relative aspect-video overflow-hidden border-grid">
-            <Image
-              src="/photo_2025-09-20 00.35.22.jpeg"
-              alt="Концертный формат"
-              fill
-              className="object-cover"
-              sizes="(max-width: 768px) 100vw, 50vw"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-neutral-950 via-neutral-950/50 to-transparent" />
-            <div className="absolute bottom-0 left-0 right-0 p-8">
-              <h3 className="mb-2 text-2xl font-display uppercase">Концерты и выступления</h3>
-              <p className="text-white/70">
-                Профессиональная сцена, концертный свет и звук для выступлений любого масштаба
-              </p>
-            </div>
-          </div>
-
-          <div className="relative aspect-video overflow-hidden border-grid">
-            <Image
-              src="/photo_2025-09-20 00.35.19.jpeg"
-              alt="Корпоративный формат"
-              fill
-              className="object-cover"
-              sizes="(max-width: 768px) 100vw, 50vw"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-neutral-950 via-neutral-950/50 to-transparent" />
-            <div className="absolute bottom-0 left-0 right-0 p-8">
-              <h3 className="mb-2 text-2xl font-display uppercase">Корпоративные мероприятия</h3>
-              <p className="text-white/70">
-                Конференции, презентации, тимбилдинги в современном оборудованном пространстве
-              </p>
-            </div>
+    <div className="w-full">
+      {/* Gallery Header - Full Viewport */}
+      <section className="full-section bg-black">
+        <div className="w-full page-padding">
+          <div className="grid gap-8">
+            <span className="text-subhero">ГАЛЕРЕЯ</span>
+            <h1 className="text-h1">
+              ФОТОГРАФИИ<br/>
+              ПРОСТРАНСТВА
+            </h1>
+            <p className="text-2xl md:text-3xl lg:text-4xl text-white/80 max-w-5xl">
+              Интерьеры, оборудование и атмосфера NEXUS. Каждое мероприятие создает
+              уникальную визуальную историю в нашем пространстве.
+            </p>
           </div>
         </div>
-      </PageSection>
-
-      <section className="border-grid grid gap-6 p-8">
-        <span className="text-xs font-mono uppercase tracking-[0.4em] text-white/50">
-          Запрос на съемку
-        </span>
-        <h2 className="text-3xl font-display uppercase tracking-tight text-white">
-          Нужны фотографии для вашего мероприятия?
-        </h2>
-        <p className="text-sm text-white/70">
-          Мы сотрудничаем с профессиональными фотографами и видеографами,
-          которые помогут запечатлеть ваше событие. Услуги фото- и видеосъемки
-          можно заказать дополнительно при бронировании пространства.
-        </p>
       </section>
+
+      {/* Main Gallery - Full Viewport */}
+      <section className="full-section bg-white text-black">
+        <div className="w-full page-padding">
+          <div className="grid gap-16 lg:gap-24">
+            <div className="grid gap-8">
+              <span className="text-2xl md:text-3xl font-mono uppercase tracking-[0.3em]">ИНТЕРЬЕРЫ</span>
+              <h2 className="text-h1">
+                ПРОСТРАНСТВО<br/>
+                NEXUS
+              </h2>
+            </div>
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {photos.map((photo, index) => (
+                <div
+                  key={index}
+                  className="group relative aspect-[4/3] overflow-hidden border-4 border-black cursor-pointer"
+                  onClick={() => openLightbox(index)}
+                >
+                  <Image
+                    src={photo}
+                    alt={`Пространство NEXUS ${index + 1}`}
+                    fill
+                    className="object-cover transition-all duration-700 group-hover:scale-110"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  />
+                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300" />
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Event Formats - Full Viewport */}
+      <section className="full-section bg-black">
+        <div className="w-full page-padding">
+          <div className="grid gap-16 lg:gap-24">
+            <div className="grid gap-8">
+              <span className="text-subhero">ВОЗМОЖНОСТИ</span>
+              <h2 className="text-h1">
+                ФОРМАТЫ<br/>
+                ИСПОЛЬЗОВАНИЯ
+              </h2>
+            </div>
+            <div className="grid md:grid-cols-2 gap-8">
+              <div className="relative h-[500px] overflow-hidden border-4 border-white">
+                <Image
+                  src="/photo_2025-09-20 00.35.22.jpeg"
+                  alt="Концертный формат"
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent" />
+                <div className="absolute bottom-0 left-0 right-0 p-8 lg:p-12">
+                  <h3 className="text-h3 mb-4">КОНЦЕРТЫ И ВЫСТУПЛЕНИЯ</h3>
+                  <p className="text-xl text-white/80">
+                    Профессиональная сцена, концертный свет и звук для выступлений любого масштаба
+                  </p>
+                </div>
+              </div>
+
+              <div className="relative h-[500px] overflow-hidden border-4 border-white">
+                <Image
+                  src="/photo_2025-09-20 00.35.19.jpeg"
+                  alt="Корпоративный формат"
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent" />
+                <div className="absolute bottom-0 left-0 right-0 p-8 lg:p-12">
+                  <h3 className="text-h3 mb-4">КОРПОРАТИВНЫЕ МЕРОПРИЯТИЯ</h3>
+                  <p className="text-xl text-white/80">
+                    Конференции, презентации, тимбилдинги в современном оборудованном пространстве
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Photo Services - Full Viewport */}
+      <section className="full-section bg-white text-black">
+        <div className="w-full page-padding">
+          <div className="grid gap-16 lg:gap-24">
+            <div className="grid gap-8">
+              <span className="text-2xl md:text-3xl font-mono uppercase tracking-[0.3em]">УСЛУГИ</span>
+              <h2 className="text-h1">
+                ФОТО И ВИДЕО<br/>
+                СЪЕМКА
+              </h2>
+            </div>
+            <div className="grid lg:grid-cols-2 gap-8">
+              <div className="border-4 border-black p-12 h-full min-h-[300px] flex flex-col">
+                <h3 className="text-h3 mb-8">ПРОФЕССИОНАЛЬНАЯ СЪЕМКА</h3>
+                <p className="text-xl text-black/80 mb-6">
+                  Мы сотрудничаем с профессиональными фотографами и видеографами,
+                  которые помогут запечатлеть ваше событие.
+                </p>
+                <ul className="space-y-3 text-lg">
+                  <li>• Репортажная съемка мероприятий</li>
+                  <li>• Студийная фотосессия</li>
+                  <li>• Видеосъемка и монтаж</li>
+                  <li>• Аэросъемка</li>
+                </ul>
+              </div>
+              <div className="border-4 border-black p-12 h-full min-h-[300px] flex flex-col">
+                <h3 className="text-h3 mb-8">СТОИМОСТЬ УСЛУГ</h3>
+                <p className="text-xl text-black/80 mb-6">
+                  Услуги фото- и видеосъемки можно заказать дополнительно
+                  при бронировании пространства.
+                </p>
+                <ul className="space-y-3 text-lg">
+                  <li>• Фотосъемка от 15 000 ₽</li>
+                  <li>• Видеосъемка от 25 000 ₽</li>
+                  <li>• Комплексный пакет от 35 000 ₽</li>
+                  <li>• Обработка материалов включена</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Image Lightbox */}
+      <ImageLightbox
+        images={photos}
+        currentIndex={lightboxIndex}
+        isOpen={lightboxOpen}
+        onClose={() => setLightboxOpen(false)}
+      />
     </div>
   );
 }
