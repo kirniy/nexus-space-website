@@ -54,9 +54,9 @@ const config: Config = {
           "100%": { transform: "translateX(-50%)" }
         },
         pulseGrid: {
-          "0%": { opacity: 0.3 },
-          "50%": { opacity: 0.8 },
-          "100%": { opacity: 0.3 }
+          "0%": { opacity: "0.3" },
+          "50%": { opacity: "0.8" },
+          "100%": { opacity: "0.3" }
         }
       },
       animation: {
