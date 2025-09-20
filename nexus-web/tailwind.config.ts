@@ -57,11 +57,41 @@ const config: Config = {
           "0%": { opacity: "0.3" },
           "50%": { opacity: "0.8" },
           "100%": { opacity: "0.3" }
+        },
+        shimmer: {
+          "0%": { transform: "translateX(-100%)" },
+          "100%": { transform: "translateX(100%)" }
+        },
+        "logo-pulse": {
+          "0%, 100%": { transform: "scale(1)" },
+          "50%": { transform: "scale(1.05)" }
+        },
+        "slide-right": {
+          "0%": { transform: "translateX(-100%)", opacity: "0" },
+          "100%": { transform: "translateX(0)", opacity: "1" }
+        },
+        "slide-left": {
+          "0%": { transform: "translateX(100%)", opacity: "0" },
+          "100%": { transform: "translateX(0)", opacity: "1" }
+        },
+        "slide-down": {
+          "0%": { transform: "translateY(-100%)", opacity: "0" },
+          "100%": { transform: "translateY(0)", opacity: "1" }
+        },
+        "slide-up": {
+          "0%": { transform: "translateY(100%)", opacity: "0" },
+          "100%": { transform: "translateY(0)", opacity: "1" }
         }
       },
       animation: {
         marquee: "marquee 20s linear infinite",
-        pulseGrid: "pulseGrid 6s ease-in-out infinite"
+        pulseGrid: "pulseGrid 6s ease-in-out infinite",
+        shimmer: "shimmer 2s infinite",
+        "logo-pulse": "logo-pulse 2s ease-in-out infinite",
+        "slide-right": "slide-right 1s ease-out forwards",
+        "slide-left": "slide-left 1s ease-out forwards",
+        "slide-down": "slide-down 1s ease-out forwards",
+        "slide-up": "slide-up 1s ease-out forwards"
       }
     }
   },

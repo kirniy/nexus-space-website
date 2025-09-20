@@ -5,16 +5,17 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import { useParallax } from "~/hooks/useParallax";
 import { AuroraBackground } from "~/components/ui/AuroraBackground";
+import { CornerAnimations } from "~/components/ui/CornerAnimations";
 
 const heroImages = [
-  "/photo_2025-09-20 00.35.13.jpeg",
-  "/photo_2025-09-20 00.35.14.jpeg",
-  "/photo_2025-09-20 00.35.16.jpeg",
-  "/photo_2025-09-20 00.35.17.jpeg",
-  "/photo_2025-09-20 00.35.18.jpeg",
-  "/photo_2025-09-20 00.35.19.jpeg",
-  "/photo_2025-09-20 00.35.22.jpeg",
-  "/photo_2025-09-20 00.35.23.jpeg",
+  "/photo_2025-09-20_00-35-13.jpeg",
+  "/photo_2025-09-20_00-35-14.jpeg",
+  "/photo_2025-09-20_00-35-16.jpeg",
+  "/photo_2025-09-20_00-35-17.jpeg",
+  "/photo_2025-09-20_00-35-18.jpeg",
+  "/photo_2025-09-20_00-35-19.jpeg",
+  "/photo_2025-09-20_00-35-22.jpeg",
+  "/photo_2025-09-20_00-35-23.jpeg",
 ];
 
 export const Hero = () => {
@@ -67,23 +68,7 @@ export const Hero = () => {
         <div className="absolute inset-0 bg-[linear-gradient(90deg,white_1px,transparent_1px),linear-gradient(180deg,white_1px,transparent_1px)] bg-[size:100px_100px]" />
       </div>
 
-      {/* Decorative Corner Lines */}
-      <div className="absolute top-0 left-0 w-64 h-64 z-[2]">
-        <div className="absolute top-4 left-8 w-32 h-[4px] bg-white animate-slide-right" />
-        <div className="absolute top-4 left-8 h-32 w-[4px] bg-white animate-slide-down" />
-      </div>
-      <div className="absolute top-0 right-0 w-64 h-64 z-[2]">
-        <div className="absolute top-4 right-8 w-32 h-[4px] bg-white animate-slide-left" />
-        <div className="absolute top-4 right-8 h-32 w-[4px] bg-white animate-slide-down" />
-      </div>
-      <div className="absolute bottom-0 left-0 w-64 h-64 z-[2]">
-        <div className="absolute bottom-8 left-8 w-32 h-[4px] bg-white animate-slide-right" />
-        <div className="absolute bottom-8 left-8 h-32 w-[4px] bg-white animate-slide-up" />
-      </div>
-      <div className="absolute bottom-0 right-0 w-64 h-64 z-[2]">
-        <div className="absolute bottom-8 right-8 w-32 h-[4px] bg-white animate-slide-left" />
-        <div className="absolute bottom-8 right-8 h-32 w-[4px] bg-white animate-slide-up" />
-      </div>
+      <CornerAnimations lineColor="bg-white" />
 
       {/* Main Content */}
       <div className="relative z-10 w-full page-padding">
@@ -161,13 +146,6 @@ export const Hero = () => {
         </div>
       </div>
 
-      {/* Scroll cue */}
-      <div className="absolute bottom-10 left-1/2 z-20 -translate-x-1/2 hidden flex-col items-center gap-3 text-center md:flex">
-        <span className="font-mono text-xs tracking-[0.6em] text-white/60">SCROLL</span>
-        <div className="relative h-20 w-px overflow-hidden bg-white/20">
-          <div className="absolute inset-x-0 top-0 h-6 bg-gradient-to-b from-white to-transparent animate-scroll-cue" />
-        </div>
-      </div>
     </section>
   );
 };

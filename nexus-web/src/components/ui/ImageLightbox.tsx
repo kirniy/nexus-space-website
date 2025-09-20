@@ -40,6 +40,11 @@ export const ImageLightbox = ({ images, currentIndex, isOpen, onClose }: ImageLi
 
   if (!isOpen) return null;
 
+  const activeImage = images[activeIndex] ?? "";
+  if (!activeImage) return null;
+
+  const normalizedSrc = activeImage.startsWith('/') ? activeImage : `/${activeImage}`;
+
   return (
     <div
       className="fixed inset-0 z-[9999] bg-black/95 backdrop-blur-sm flex items-center justify-center p-4 animate-fade-in"
@@ -83,7 +88,7 @@ export const ImageLightbox = ({ images, currentIndex, isOpen, onClose }: ImageLi
         onClick={(e) => e.stopPropagation()}
       >
         <Image
-          src={`/${images[activeIndex]}`}
+          src={normalizedSrc}
           alt={`Пространство NEXUS ${activeIndex + 1}`}
           fill
           className="object-contain"

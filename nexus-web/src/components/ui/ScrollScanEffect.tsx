@@ -1,42 +1,79 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
+
+const IDLE_THRESHOLD = 1800;
+const ANIMATION_DURATION = 1400;
 
 export const ScrollScanEffect = () => {
-  const lastScrollTime = useRef<number>(0);
+  const [isActive, setIsActive] = useState(false);
+  const lastScrollTime = useRef<number>(Date.now());
   const animationTimeout = useRef<NodeJS.Timeout>();
+  const prefersReducedMotion = useRef(false);
 
   useEffect(() => {
+    if (typeof window === "undefined") return;
+
+    const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+    const updatePreference = (event: MediaQueryListEvent | MediaQueryList) => {
+      prefersReducedMotion.current = event.matches;
+      if (event.matches) {
+        setIsActive(false);
+      }
+    };
+
+    updatePreference(mediaQuery);
+
+    const listener = (event: MediaQueryListEvent) => updatePreference(event);
+
+    if (typeof mediaQuery.addEventListener === "function") {
+      mediaQuery.addEventListener("change", listener);
+    } else if (typeof mediaQuery.addListener === "function") {
+      mediaQuery.addListener(listener);
+    }
+
     const handleScroll = () => {
       const now = Date.now();
       const timeSinceLastScroll = now - lastScrollTime.current;
 
-      // Only trigger if we haven't scrolled in the last 2 seconds
-      if (timeSinceLastScroll > 2000) {
-        document.body.classList.add('scrolling');
+      if (!prefersReducedMotion.current && timeSinceLastScroll > IDLE_THRESHOLD) {
+        setIsActive(true);
 
-        // Remove the class after animation completes
         if (animationTimeout.current) {
           clearTimeout(animationTimeout.current);
         }
 
         animationTimeout.current = setTimeout(() => {
-          document.body.classList.remove('scrolling');
-        }, 2000);
+          setIsActive(false);
+        }, ANIMATION_DURATION);
       }
 
       lastScrollTime.current = now;
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
 
     return () => {
-      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener("scroll", handleScroll);
+      if (typeof mediaQuery.removeEventListener === "function") {
+        mediaQuery.removeEventListener("change", listener);
+      } else if (typeof mediaQuery.removeListener === "function") {
+        mediaQuery.removeListener(listener);
+      }
       if (animationTimeout.current) {
         clearTimeout(animationTimeout.current);
       }
     };
   }, []);
 
-  return null;
+  return (
+    <div aria-hidden="true" className="scroll-overlay-container">
+      <div className={`scroll-overlay ${isActive ? "scroll-overlay--active" : ""}`}>
+        <span className="scroll-overlay__beam scroll-overlay__beam--horizontal" />
+        <span className="scroll-overlay__beam scroll-overlay__beam--vertical" />
+        <span className="scroll-overlay__pulse" />
+      </div>
+    </div>
+  );
 };

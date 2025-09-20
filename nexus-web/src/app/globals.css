@@ -23,6 +23,87 @@ main {
   @apply bg-black;
 }
 
+.scroll-overlay-container {
+  position: fixed;
+  inset: 0;
+  z-index: 70;
+  pointer-events: none;
+}
+
+.scroll-overlay {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.45s ease;
+}
+
+.scroll-overlay::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center, rgba(255, 255, 255, 0.15), transparent 60%);
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+
+.scroll-overlay--active {
+  opacity: 1;
+}
+
+.scroll-overlay--active::before {
+  opacity: 0.4;
+}
+
+.scroll-overlay__beam {
+  position: absolute;
+  left: 10%;
+  right: 10%;
+  top: 50%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.65), transparent);
+  transform-origin: center;
+  opacity: 0;
+}
+
+.scroll-overlay__beam--vertical {
+  top: 8%;
+  bottom: 8%;
+  left: 50%;
+  width: 1px;
+  height: unset;
+  background: linear-gradient(180deg, transparent, rgba(255, 255, 255, 0.55), transparent);
+}
+
+.scroll-overlay__pulse {
+  position: absolute;
+  inset: 50% auto auto 50%;
+  width: clamp(180px, 28vw, 460px);
+  height: clamp(180px, 28vw, 460px);
+  transform: translate(-50%, -50%);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  opacity: 0;
+  mix-blend-mode: screen;
+}
+
+.scroll-overlay__pulse::after {
+  content: "";
+  position: absolute;
+  inset: 12%;
+  border: 1px dashed rgba(255, 255, 255, 0.08);
+}
+
+.scroll-overlay--active .scroll-overlay__beam--horizontal {
+  animation: scroll-beam-horizontal 1.3s cubic-bezier(0.76, 0, 0.24, 1) forwards;
+}
+
+.scroll-overlay--active .scroll-overlay__beam--vertical {
+  animation: scroll-beam-vertical 1.3s cubic-bezier(0.76, 0, 0.24, 1) forwards;
+}
+
+.scroll-overlay--active .scroll-overlay__pulse {
+  animation: scroll-pulse 1.1s ease-out forwards;
+}
+
 .aurora-container {
   mix-blend-mode: screen;
 }
@@ -109,7 +190,7 @@ main {
 
 /* Massive brutalist cards */
 .card {
-  @apply border-4 border-white bg-black p-8 sm:p-12 lg:p-16 transition-all duration-500;
+  @apply border-4 border-white bg-black p-8 sm:p-12 lg:p-16 transition-all duration-500 flex h-full flex-col;
   min-height: 300px;
   position: relative;
   overflow: hidden;
@@ -287,6 +368,149 @@ main:focus-visible {
   outline-offset: 8px;
 }
 
+/* Accessibility utilities */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.sr-only:focus {
+  position: static;
+  width: auto;
+  height: auto;
+  padding: inherit;
+  margin: inherit;
+  overflow: visible;
+  clip: auto;
+  white-space: normal;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .card::after {
+    opacity: 0.1;
+  }
+
+  .button-primary::before {
+    opacity: 0.3;
+  }
+}
+
+/* Form enhancements */
+.form-field {
+  @apply transition-all duration-300;
+}
+
+.form-field:focus-within {
+  @apply scale-[1.02];
+}
+
+.form-field:focus-within input,
+.form-field:focus-within textarea,
+.form-field:focus-within select {
+  @apply border-white shadow-lg;
+}
+
+.form-field.error input,
+.form-field.error textarea,
+.form-field.error select {
+  @apply border-red-500;
+}
+
+.form-field.error::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border: 2px solid rgba(239, 68, 68, 0.3);
+  border-radius: inherit;
+  pointer-events: none;
+  animation: error-pulse 2s ease-in-out;
+}
+
+@keyframes error-pulse {
+  0%, 100% {
+    opacity: 0;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+}
+
+/* Enhanced button interactions */
+.button-primary:active {
+  @apply scale-95;
+  transition-duration: 100ms;
+}
+
+/* Loading states */
+.loading-shimmer {
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* Success animations */
+.success-bounce {
+  animation: success-bounce 0.6s ease-in-out;
+}
+
+@keyframes success-bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-10px);
+  }
+  60% {
+    transform: translateY(-5px);
+  }
+}
+
+/* Reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .animate-fade-in,
+  .animate-slide-up,
+  .animate-slide-down,
+  .animate-slide-left,
+  .animate-slide-right,
+  .animate-scale-in,
+  .animate-glitch,
+  .animate-float,
+  .loading-shimmer,
+  .success-bounce,
+  .error-pulse {
+    animation: none !important;
+  }
+
+  .group:hover .group-hover\:scale-125,
+  .button-primary:hover,
+  .form-field:focus-within {
+    transform: none !important;
+  }
+
+  .button-primary:active {
+    transform: none !important;
+  }
+}
+
 /* Animations */
 @keyframes fade-in {
   from {
@@ -361,26 +585,17 @@ main:focus-visible {
   }
 }
 
-@keyframes scan-line {
-  from {
-    transform: translateY(-100%);
-  }
-  to {
-    transform: translateY(100vh);
-  }
-}
-
 @keyframes slide-right {
   0% {
     transform: translateX(-100%);
     opacity: 0;
   }
   50% {
-    opacity: 1;
+    opacity: var(--slide-mid-opacity, 1);
   }
   100% {
     transform: translateX(0);
-    opacity: 1;
+    opacity: var(--slide-final-opacity, 1);
   }
 }
 
@@ -390,11 +605,11 @@ main:focus-visible {
     opacity: 0;
   }
   50% {
-    opacity: 1;
+    opacity: var(--slide-mid-opacity, 1);
   }
   100% {
     transform: translateX(0);
-    opacity: 1;
+    opacity: var(--slide-final-opacity, 1);
   }
 }
 
@@ -404,11 +619,11 @@ main:focus-visible {
     opacity: 0;
   }
   50% {
-    opacity: 1;
+    opacity: var(--slide-mid-opacity, 1);
   }
   100% {
     transform: translateY(0);
-    opacity: 1;
+    opacity: var(--slide-final-opacity, 1);
   }
 }
 
@@ -431,6 +646,48 @@ main:focus-visible {
   }
   100% {
     transform: translateY(180%);
+    opacity: 0;
+  }
+}
+
+@keyframes scroll-beam-horizontal {
+  0% {
+    transform: translateY(-18%) scaleX(0.5);
+    opacity: 0;
+  }
+  35% {
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateY(18%) scaleX(1);
+    opacity: 0;
+  }
+}
+
+@keyframes scroll-beam-vertical {
+  0% {
+    transform: translateX(18%) scaleY(0.45);
+    opacity: 0;
+  }
+  35% {
+    opacity: 0.7;
+  }
+  100% {
+    transform: translateX(-18%) scaleY(1);
+    opacity: 0;
+  }
+}
+
+@keyframes scroll-pulse {
+  0% {
+    transform: translate(-50%, -50%) scale(0.78);
+    opacity: 0;
+  }
+  45% {
+    opacity: 0.6;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1.05);
     opacity: 0;
   }
 }
@@ -479,21 +736,16 @@ main:focus-visible {
   animation: scroll-cue 2s ease-in-out infinite;
 }
 
-/* Scan line effect - triggered by scrolling */
-.scan-line.scrolling::after {
-  content: '';
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 2px;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.8), transparent);
-  animation: scan-line 2s linear 1;
-  pointer-events: none;
-  z-index: 100;
-}
-
 @media (prefers-reduced-motion: reduce) {
+  .scroll-overlay-container,
+  .scroll-overlay,
+  .scroll-overlay__beam,
+  .scroll-overlay__pulse {
+    animation: none !important;
+    transition: none !important;
+    opacity: 0 !important;
+  }
+
   .aurora,
   .animate-scroll-cue,
   .marquee__inner {

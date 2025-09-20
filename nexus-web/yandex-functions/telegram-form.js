@@ -50,10 +50,21 @@ function sendTelegramMessage(chatId, message) {
 }
 
 exports.handler = async (event) => {
-    // Parse request body
+    // Parse request body - handle both direct invocation and API gateway
     let body;
     try {
-        body = JSON.parse(event.body);
+        // If event.body is a string, parse it
+        if (typeof event.body === 'string') {
+            body = JSON.parse(event.body);
+        } else if (event.body && typeof event.body === 'object') {
+            // If event.body is already an object
+            body = event.body;
+        } else if (typeof event === 'object' && !event.body) {
+            // Direct invocation - the event itself is the body
+            body = event;
+        } else {
+            throw new Error('Unable to parse request body');
+        }
     } catch (e) {
         return {
             statusCode: 400,
@@ -62,7 +73,7 @@ exports.handler = async (event) => {
                 'Access-Control-Allow-Headers': 'Content-Type',
                 'Access-Control-Allow-Methods': 'POST, OPTIONS'
             },
-            body: JSON.stringify({ error: 'Invalid JSON' })
+            body: JSON.stringify({ error: 'Invalid JSON', details: e.message })
         };
     }
 

@@ -8,7 +8,7 @@ export const LoadingScreen = () => {
   const [loadingProgress, setLoadingProgress] = useState(0);
 
   useEffect(() => {
-    // Simulate loading progress
+    // Simulate loading progress with smoother intervals
     const interval = setInterval(() => {
       setLoadingProgress(prev => {
         if (prev >= 100) {
@@ -16,9 +16,11 @@ export const LoadingScreen = () => {
           setTimeout(() => setIsLoading(false), 500);
           return 100;
         }
-        return prev + 20;
+        // Smoother increments
+        const increment = Math.random() * 15 + 10; // Random between 10-25
+        return Math.min(prev + increment, 100);
       });
-    }, 200);
+    }, 300);
 
     return () => clearInterval(interval);
   }, []);
@@ -28,41 +30,71 @@ export const LoadingScreen = () => {
   return (
     <div className="fixed inset-0 z-[9999] bg-black flex items-center justify-center">
       <div className="relative">
-        {/* Animated Logo */}
+        {/* Animated Logo with glow effect */}
         <div className="relative animate-logo-pulse">
           <Image
             src="/nexus-logo.svg"
             alt="NEXUS"
             width={300}
             height={100}
-            className="brightness-0 invert"
+            className="brightness-0 invert drop-shadow-[0_0_30px_rgba(255,255,255,0.5)]"
             priority
           />
+          {/* Logo glow animation */}
+          <div className="absolute inset-0 blur-xl opacity-50 animate-pulse">
+            <Image
+              src="/nexus-logo.svg"
+              alt="NEXUS"
+              width={300}
+              height={100}
+              className="brightness-0 invert"
+              priority
+            />
+          </div>
         </div>
 
-        {/* Loading Bar */}
-        <div className="mt-12 w-[300px] h-[2px] bg-white/20">
+        {/* Enhanced Loading Bar with gradient */}
+        <div className="mt-12 w-[300px] h-[3px] bg-white/10 rounded-full overflow-hidden">
           <div
-            className="h-full bg-white transition-all duration-300 ease-out"
-            style={{ width: `${loadingProgress}%` }}
-          />
+            className="h-full transition-all duration-500 ease-out rounded-full relative"
+            style={{
+              width: `${loadingProgress}%`,
+              background: 'linear-gradient(90deg, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0.8) 50%, rgba(255,255,255,1) 100%)'
+            }}
+          >
+            {/* Animated shine effect */}
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent animate-shimmer" />
+          </div>
         </div>
 
-        {/* Loading Text */}
+        {/* Loading Text in Russian */}
         <div className="mt-6 text-center">
-          <span className="text-white font-mono text-xl tracking-[0.3em] animate-pulse">
-            LOADING
+          <span className="text-white font-mono text-xl tracking-[0.3em] animate-pulse uppercase">
+            ЗАГРУЗКА
           </span>
-          <span className="text-white/60 font-mono text-lg ml-2">
-            {loadingProgress}%
+          <span className="text-white/60 font-mono text-lg ml-3">
+            {Math.round(loadingProgress)}%
           </span>
         </div>
 
-        {/* Corner Decorations */}
-        <div className="absolute -top-20 -left-20 w-16 h-16 border-l-2 border-t-2 border-white animate-spin" style={{ animationDuration: '8s' }} />
-        <div className="absolute -top-20 -right-20 w-16 h-16 border-r-2 border-t-2 border-white animate-spin" style={{ animationDuration: '8s', animationDirection: 'reverse' }} />
-        <div className="absolute -bottom-20 -left-20 w-16 h-16 border-l-2 border-b-2 border-white animate-spin" style={{ animationDuration: '8s', animationDirection: 'reverse' }} />
-        <div className="absolute -bottom-20 -right-20 w-16 h-16 border-r-2 border-b-2 border-white animate-spin" style={{ animationDuration: '8s' }} />
+        {/* Enhanced Corner Decorations - STRAIGHT ANGLES */}
+        <div className="absolute -top-20 -left-20 w-16 h-16 animate-spin" style={{ animationDuration: '8s' }}>
+          <div className="w-full h-full border-l-2 border-t-2 border-white/80"
+               style={{ filter: 'drop-shadow(0 0 10px rgba(255,255,255,0.5))' }} />
+        </div>
+        <div className="absolute -top-20 -right-20 w-16 h-16 animate-spin" style={{ animationDuration: '8s', animationDirection: 'reverse' }}>
+          <div className="w-full h-full border-r-2 border-t-2 border-white/80"
+               style={{ filter: 'drop-shadow(0 0 10px rgba(255,255,255,0.5))' }} />
+        </div>
+        <div className="absolute -bottom-20 -left-20 w-16 h-16 animate-spin" style={{ animationDuration: '8s', animationDirection: 'reverse' }}>
+          <div className="w-full h-full border-l-2 border-b-2 border-white/80"
+               style={{ filter: 'drop-shadow(0 0 10px rgba(255,255,255,0.5))' }} />
+        </div>
+        <div className="absolute -bottom-20 -right-20 w-16 h-16 animate-spin" style={{ animationDuration: '8s' }}>
+          <div className="w-full h-full border-r-2 border-b-2 border-white/80"
+               style={{ filter: 'drop-shadow(0 0 10px rgba(255,255,255,0.5))' }} />
+        </div>
+
       </div>
     </div>
   );

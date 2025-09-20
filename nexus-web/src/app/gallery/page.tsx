@@ -4,6 +4,8 @@ import { Metadata } from "next";
 import Image from "next/image";
 import { useState } from "react";
 import { ImageLightbox } from "~/components/ui/ImageLightbox";
+import { CornerAnimations } from "~/components/ui/CornerAnimations";
+import DomeGallery from "~/components/ui/DomeGallery";
 import {
   IconMusic,
   IconBuilding,
@@ -18,14 +20,14 @@ import {
 } from '@tabler/icons-react';
 
 const photos = [
-  "/photo_2025-09-20 00.35.13.jpeg",
-  "/photo_2025-09-20 00.35.14.jpeg",
-  "/photo_2025-09-20 00.35.16.jpeg",
-  "/photo_2025-09-20 00.35.17.jpeg",
-  "/photo_2025-09-20 00.35.18.jpeg",
-  "/photo_2025-09-20 00.35.19.jpeg",
-  "/photo_2025-09-20 00.35.22.jpeg",
-  "/photo_2025-09-20 00.35.23.jpeg",
+  "/photo_2025-09-20_00-35-13.jpeg",
+  "/photo_2025-09-20_00-35-14.jpeg",
+  "/photo_2025-09-20_00-35-16.jpeg",
+  "/photo_2025-09-20_00-35-17.jpeg",
+  "/photo_2025-09-20_00-35-18.jpeg",
+  "/photo_2025-09-20_00-35-19.jpeg",
+  "/photo_2025-09-20_00-35-22.jpeg",
+  "/photo_2025-09-20_00-35-23.jpeg",
 ];
 
 export default function GalleryPage() {
@@ -39,16 +41,32 @@ export default function GalleryPage() {
 
   return (
     <div className="w-full">
-      {/* Gallery Header - Full Viewport */}
-      <section className="full-section bg-black">
-        <div className="w-full page-padding">
-          <div className="grid gap-8">
-            <span className="text-subhero">ГАЛЕРЕЯ</span>
-            <h1 className="text-h1">
+      {/* Gallery Header with 3D Dome - Full Viewport */}
+      <section className="full-section bg-black relative overflow-hidden">
+        {/* 3D Dome Gallery Background - with proper z-index */}
+        <div className="absolute inset-0" style={{ zIndex: 1 }}>
+          <DomeGallery />
+        </div>
+
+        {/* Dark gradient overlay for text readability */}
+        <div
+          className="absolute top-0 left-0 right-0 h-[70%] pointer-events-none"
+          style={{
+            zIndex: 5,
+            background: 'linear-gradient(to bottom, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.6) 50%, transparent 100%)'
+          }}
+        />
+
+        {/* Content Overlay - positioned to not block DomeGallery interaction */}
+        <div className="absolute top-0 left-0 right-0 p-8 lg:p-16" style={{ zIndex: 10 }}>
+          <CornerAnimations lineColor="bg-white" />
+          <div className="grid gap-8 max-w-7xl">
+            <span className="text-subhero drop-shadow-2xl">ГАЛЕРЕЯ</span>
+            <h1 className="text-h1 drop-shadow-2xl">
               ФОТОГРАФИИ<br/>
               ПРОСТРАНСТВА
             </h1>
-            <p className="text-2xl md:text-3xl lg:text-4xl text-white/80 max-w-5xl">
+            <p className="text-2xl md:text-3xl lg:text-4xl text-white/90 max-w-5xl drop-shadow-2xl">
               Интерьеры, оборудование и атмосфера NEXUS. Каждое мероприятие создает
               уникальную визуальную историю в нашем пространстве.
             </p>
@@ -57,7 +75,8 @@ export default function GalleryPage() {
       </section>
 
       {/* Main Gallery - Full Viewport */}
-      <section className="full-section bg-white text-black">
+      <section className="full-section bg-white text-black relative">
+        <CornerAnimations lineColor="bg-black" />
         <div className="w-full page-padding">
           <div className="grid gap-16 lg:gap-24">
             <div className="grid gap-8">
@@ -90,7 +109,8 @@ export default function GalleryPage() {
       </section>
 
       {/* Event Formats - Full Viewport */}
-      <section className="full-section bg-black">
+      <section className="full-section bg-black relative">
+        <CornerAnimations lineColor="bg-white" />
         <div className="w-full page-padding">
           <div className="grid gap-16 lg:gap-24">
             <div className="grid gap-8">
@@ -103,7 +123,7 @@ export default function GalleryPage() {
             <div className="grid md:grid-cols-2 gap-8">
               <div className="relative h-[500px] overflow-hidden border-4 border-white">
                 <Image
-                  src="/photo_2025-09-20 00.35.22.jpeg"
+                  src="/photo_2025-09-20_00-35-22.jpeg"
                   alt="Концертный формат"
                   fill
                   className="object-cover"
@@ -123,7 +143,7 @@ export default function GalleryPage() {
 
               <div className="relative h-[500px] overflow-hidden border-4 border-white">
                 <Image
-                  src="/photo_2025-09-20 00.35.19.jpeg"
+                  src="/photo_2025-09-20_00-35-19.jpeg"
                   alt="Корпоративный формат"
                   fill
                   className="object-cover"
@@ -146,7 +166,8 @@ export default function GalleryPage() {
       </section>
 
       {/* Photo Services - Full Viewport */}
-      <section className="full-section bg-white text-black">
+      <section className="full-section bg-white text-black relative">
+        <CornerAnimations lineColor="bg-black" />
         <div className="w-full page-padding">
           <div className="grid gap-16 lg:gap-24">
             <div className="grid gap-8">

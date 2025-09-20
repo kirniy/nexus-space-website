@@ -5,6 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { AnnouncementBanner } from "~/components/ui/AnnouncementBanner";
+import { CornerAnimations } from "~/components/ui/CornerAnimations";
 import {
   IconSquare,
   IconUsers,
@@ -27,10 +28,10 @@ import {
 } from '@tabler/icons-react';
 
 const heroImages = [
-  "/photo_2025-09-20 00.35.13.jpeg",
-  "/photo_2025-09-20 00.35.16.jpeg",
-  "/photo_2025-09-20 00.35.19.jpeg",
-  "/photo_2025-09-20 00.35.22.jpeg",
+  "/photo_2025-09-20_00-35-13.jpeg",
+  "/photo_2025-09-20_00-35-16.jpeg",
+  "/photo_2025-09-20_00-35-19.jpeg",
+  "/photo_2025-09-20_00-35-22.jpeg",
 ];
 
 const stats = [
@@ -166,7 +167,8 @@ export default function SpacePage() {
       </section>
 
       {/* Stats - Full Viewport */}
-      <section className="full-section bg-white text-black">
+      <section className="full-section bg-white text-black relative">
+        <CornerAnimations lineColor="bg-black" />
         <div className="w-full page-padding">
           <div className="grid gap-16 lg:gap-24">
             <div className="grid gap-8">
@@ -190,7 +192,8 @@ export default function SpacePage() {
       </section>
 
       {/* Zones - Full Viewport */}
-      <section className="full-section bg-black">
+      <section className="full-section bg-black relative">
+        <CornerAnimations lineColor="bg-white" />
         <div className="w-full page-padding">
           <div className="grid gap-16 lg:gap-24">
             <div className="grid gap-8">
@@ -218,7 +221,8 @@ export default function SpacePage() {
       </section>
 
       {/* Equipment - Full Viewport */}
-      <section className="full-section bg-white text-black">
+      <section className="full-section bg-white text-black relative">
+        <CornerAnimations lineColor="bg-black" />
         <div className="w-full page-padding">
           <div className="grid gap-16 lg:gap-24">
             <div className="grid gap-8">
@@ -245,7 +249,8 @@ export default function SpacePage() {
       </section>
 
       {/* Configurations - Full Viewport */}
-      <section className="full-section bg-black">
+      <section className="full-section bg-black relative">
+        <CornerAnimations lineColor="bg-white" />
         <div className="w-full page-padding">
           <div className="grid gap-16 lg:gap-24">
             <div className="grid gap-8">
@@ -289,7 +294,8 @@ export default function SpacePage() {
       </section>
 
       {/* Additional Services - Full Viewport */}
-      <section className="full-section bg-white text-black">
+      <section className="full-section bg-white text-black relative">
+        <CornerAnimations lineColor="bg-black" />
         <div className="w-full page-padding">
           <div className="grid gap-16 lg:gap-24">
             <div className="grid gap-8">
@@ -326,7 +332,8 @@ export default function SpacePage() {
       </section>
 
       {/* Booking Process - Full Viewport */}
-      <section className="full-section bg-black">
+      <section className="full-section bg-black relative">
+        <CornerAnimations lineColor="bg-white" />
         <div className="w-full page-padding">
           <div className="grid gap-16 lg:gap-24">
             <div className="grid gap-8">

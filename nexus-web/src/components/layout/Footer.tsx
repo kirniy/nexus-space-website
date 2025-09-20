@@ -3,10 +3,12 @@ import {
   IconMail,
   IconPhone,
   IconBrandTelegram,
+  IconBrandWhatsapp,
   IconHome,
   IconBuilding,
   IconPhoto,
-  IconMapPin
+  IconMapPin,
+  IconCalendarEvent
 } from '@tabler/icons-react';
 
 type FooterColumn = {
@@ -32,9 +34,10 @@ const footerLinks: FooterColumn[] = [
   {
     title: "Контакты",
     links: [
-      { label: "Аренда пространства", href: "mailto:info@nexus-events.ru", external: true, icon: <IconMail size={18} /> },
-      { label: "Телефон", href: "tel:+79214104440", external: true, icon: <IconPhone size={18} /> },
-      { label: "Телеграм", href: "https://t.me/nexusspb", external: true, icon: <IconBrandTelegram size={18} /> }
+      { label: "Забронировать", href: "/contact", icon: <IconCalendarEvent size={18} /> },
+      { label: "WhatsApp", href: "https://wa.me/79214104440", external: true, icon: <IconBrandWhatsapp size={18} /> },
+      { label: "Телеграм канал", href: "https://t.me/nexusspb", external: true, icon: <IconBrandTelegram size={18} /> },
+      { label: "Телефон", href: "tel:+79214104440", external: true, icon: <IconPhone size={18} /> }
     ]
   }
 ];

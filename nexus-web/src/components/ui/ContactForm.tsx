@@ -33,6 +33,29 @@ export const ContactForm = () => {
     message: string;
   }>({ type: null, message: "" });
 
+  const [validationErrors, setValidationErrors] = useState<Record<string, string>>({});
+
+  const validateForm = () => {
+    const errors: Record<string, string> = {};
+
+    if (!formData.name.trim()) {
+      errors.name = "Имя обязательно для заполнения";
+    }
+
+    if (!formData.email.trim()) {
+      errors.email = "Email обязателен для заполнения";
+    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
+      errors.email = "Введите корректный email";
+    }
+
+    if (!formData.phone.trim()) {
+      errors.phone = "Телефон обязателен для заполнения";
+    }
+
+    setValidationErrors(errors);
+    return Object.keys(errors).length === 0;
+  };
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setFormData({
       ...formData,
@@ -42,8 +65,17 @@ export const ContactForm = () => {
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    setIsSubmitting(true);
     setSubmitStatus({ type: null, message: "" });
+
+    if (!validateForm()) {
+      setSubmitStatus({
+        type: "error",
+        message: "Пожалуйста, исправьте ошибки в форме"
+      });
+      return;
+    }
+
+    setIsSubmitting(true);
 
     try {
       const result = await api.submitContact({
@@ -93,12 +125,14 @@ export const ContactForm = () => {
     <form
       onSubmit={handleSubmit}
       className="border-4 border-white bg-black p-12 text-xl text-white [&_label]:flex [&_label]:flex-col [&_label]:gap-4 [&_input]:border-2 [&_input]:border-white [&_input]:bg-black [&_input]:px-6 [&_input]:py-4 [&_input]:text-xl [&_textarea]:border-2 [&_textarea]:border-white [&_textarea]:bg-black [&_textarea]:px-6 [&_textarea]:py-4 [&_textarea]:text-xl [&_select]:border-2 [&_select]:border-white [&_select]:bg-black [&_select]:px-6 [&_select]:py-4 [&_select]:text-xl"
+      aria-label="Форма заявки на аренду пространства"
+      noValidate
     >
       <div className="grid gap-8">
         <div className="grid gap-8 lg:grid-cols-2">
           <label>
-            <span className="font-mono uppercase tracking-wider flex items-center gap-2">
-              <IconUser size={20} className="text-white/60" />
+            <span className="font-mono uppercase tracking-wider flex items-center gap-2" id="name-label">
+              <IconUser size={20} className="text-white/60" aria-hidden="true" />
               ИМЯ *
             </span>
             <input
@@ -109,11 +143,15 @@ export const ContactForm = () => {
               onChange={handleChange}
               required
               className="w-full placeholder:text-white/40"
+              aria-label="Имя"
+              aria-describedby="name-label"
+              aria-required="true"
+              autoComplete="name"
             />
           </label>
           <label>
-            <span className="font-mono uppercase tracking-wider flex items-center gap-2">
-              <IconBuilding size={20} className="text-white/60" />
+            <span className="font-mono uppercase tracking-wider flex items-center gap-2" id="company-label">
+              <IconBuilding size={20} className="text-white/60" aria-hidden="true" />
               КОМПАНИЯ
             </span>
             <input
@@ -123,6 +161,9 @@ export const ContactForm = () => {
               value={formData.company}
               onChange={handleChange}
               className="w-full placeholder:text-white/40"
+              aria-label="Название компании"
+              aria-describedby="company-label"
+              autoComplete="organization"
             />
           </label>
         </div>
@@ -223,22 +264,17 @@ export const ContactForm = () => {
           />
         </label>
 
-        {submitStatus.type && (
-          <div className={`p-6 border-2 flex items-center gap-4 ${submitStatus.type === 'success' ? 'border-green-500 text-green-500' : 'border-red-500 text-red-500'}`}>
-            {submitStatus.type === 'success' ? <IconCheck size={32} /> : <IconX size={32} />}
-            <span>{submitStatus.message}</span>
-          </div>
-        )}
 
         <button
           type="submit"
-          className="button-primary inline-flex items-center justify-center gap-3 disabled:opacity-50 disabled:cursor-not-allowed"
+          className="button-primary inline-flex items-center justify-center gap-3 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 hover:shadow-2xl hover:scale-[1.02] focus:ring-4 focus:ring-white/20 focus:outline-none"
           disabled={isSubmitting}
+          aria-describedby={submitStatus.type ? "submit-status" : undefined}
         >
           {isSubmitting ? (
             <>
-              <IconSend size={24} className="animate-pulse" />
-              <span>ОТПРАВКА...</span>
+              <IconSend size={24} className="animate-spin" />
+              <span className="animate-pulse">ОТПРАВКА...</span>
             </>
           ) : (
             <>
@@ -247,6 +283,27 @@ export const ContactForm = () => {
             </>
           )}
         </button>
+
+        {/* Status message with better styling */}
+        {submitStatus.type && (
+          <div
+            id="submit-status"
+            className={`p-6 border-2 flex items-center gap-4 transition-all duration-300 ${
+              submitStatus.type === 'success'
+                ? 'border-green-500 text-green-500 bg-green-500/10 animate-pulse'
+                : 'border-red-500 text-red-500 bg-red-500/10'
+            }`}
+            role="status"
+            aria-live="polite"
+          >
+            {submitStatus.type === 'success' ? (
+              <IconCheck size={32} className="animate-bounce" />
+            ) : (
+              <IconX size={32} />
+            )}
+            <span>{submitStatus.message}</span>
+          </div>
+        )}
       </div>
     </form>
   );

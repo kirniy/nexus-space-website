@@ -3,6 +3,7 @@ import Link from "next/link";
 import { PageSection } from "~/components/sections/PageSection";
 import { AnnouncementBanner } from "~/components/ui/AnnouncementBanner";
 import { ContactForm } from "~/components/ui/ContactForm";
+import { CornerAnimations } from "~/components/ui/CornerAnimations";
 import {
   IconPhone,
   IconMail,
@@ -30,7 +31,8 @@ export default function ContactPage() {
   return (
     <div className="w-full">
       {/* Contact Header - Full Viewport */}
-      <section className="full-section bg-black">
+      <section className="full-section bg-black relative">
+        <CornerAnimations lineColor="bg-white" />
         <div className="w-full page-padding">
           <div className="grid gap-8">
             <span className="text-subhero">КОНТАКТЫ</span>
@@ -46,7 +48,8 @@ export default function ContactPage() {
       </section>
 
       {/* Contact Form - Full Viewport */}
-      <section className="full-section bg-white text-black">
+      <section className="full-section bg-white text-black relative">
+        <CornerAnimations lineColor="bg-black" />
         <div className="w-full page-padding">
           <div className="grid gap-16 lg:gap-24">
             <div className="grid gap-8">
@@ -62,7 +65,8 @@ export default function ContactPage() {
       </section>
 
       {/* Location & Map - Full Viewport */}
-      <section className="full-section bg-black">
+      <section className="full-section bg-black relative">
+        <CornerAnimations lineColor="bg-white" />
         <div className="w-full page-padding">
           <div className="grid gap-16 lg:gap-24">
             <div className="grid gap-8">
@@ -141,7 +145,8 @@ export default function ContactPage() {
       </section>
 
       {/* Contact Methods - Full Viewport */}
-      <section className="full-section bg-white text-black">
+      <section className="full-section bg-white text-black relative">
+        <CornerAnimations lineColor="bg-black" />
         <div className="w-full page-padding">
           <div className="grid gap-16 lg:gap-24">
             <div className="grid gap-8">

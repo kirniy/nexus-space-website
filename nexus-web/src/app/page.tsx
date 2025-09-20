@@ -5,8 +5,9 @@ import { Marquee } from "~/components/ui/Marquee";
 import { ScrollAnimatedWrapper } from "~/components/ui/ScrollAnimatedWrapper";
 import { ImageLightbox } from "~/components/ui/ImageLightbox";
 import { ContactForm } from "~/components/ui/ContactForm";
-import Image from "next/image";
+import { CornerAnimations } from "~/components/ui/CornerAnimations";
 import Link from "next/link";
+import Image from "next/image";
 import { useState } from "react";
 import {
   IconSquare,
@@ -91,28 +92,31 @@ const techSpecs = [
   {
     category: "Звук",
     items: [
-      "Профессиональная акустическая система",
-      "Микшерный пульт",
-      "Радиомикрофоны",
-      "DJ-оборудование"
+      "Профессиональная акустическая система L-Acoustics",
+      "Цифровой микшерный пульт Yamaha CL5",
+      "Беспроводные микрофоны Sennheiser",
+      "DJ-оборудование Pioneer CDJ-3000",
+      "Мониторная система для артистов"
     ]
   },
   {
     category: "Свет",
     items: [
-      "Интеллектуальное освещение",
-      "LED-прожекторы",
-      "Дым-машины",
-      "Стробоскопы"
+      "Интеллектуальные световые приборы Clay Paky",
+      "LED-прожекторы с полным спектром RGBW",
+      "Дым-машины и хейзеры для спецэффектов",
+      "Стробоскопы и лазерные установки",
+      "Система управления светом GrandMA"
     ]
   },
   {
     category: "Видео",
     items: [
-      "LED-экран 12×4 м",
-      "Проекционное оборудование",
-      "Система видеотрансляции",
-      "Плазменные панели"
+      "Светодиодный экран 12×4 м (P3.9)",
+      "Проекционное оборудование 4K",
+      "Система видеотрансляции и стриминга",
+      "Плазменные панели 65\" для VIP-зоны",
+      "Система видеоконференцсвязи"
     ]
   }
 ];
@@ -122,12 +126,12 @@ export default function HomePage() {
   const [lightboxIndex, setLightboxIndex] = useState(0);
 
   const galleryImages = [
-    "photo_2025-09-20 00.35.13.jpeg",
-    "photo_2025-09-20 00.35.14.jpeg",
-    "photo_2025-09-20 00.35.16.jpeg",
-    "photo_2025-09-20 00.35.17.jpeg",
-    "photo_2025-09-20 00.35.18.jpeg",
-    "photo_2025-09-20 00.35.19.jpeg",
+    "/photo_2025-09-20_00-35-13.jpeg",
+    "/photo_2025-09-20_00-35-14.jpeg",
+    "/photo_2025-09-20_00-35-16.jpeg",
+    "/photo_2025-09-20_00-35-17.jpeg",
+    "/photo_2025-09-20_00-35-18.jpeg",
+    "/photo_2025-09-20_00-35-19.jpeg",
   ];
 
   const openLightbox = (index: number) => {
@@ -138,40 +142,63 @@ export default function HomePage() {
   return (
     <>
       <Hero />
-      <Marquee items={marqueeItems} speed={25} />
+      <Marquee items={marqueeItems} speed={25} aria-label="Бегущая строка с информацией о пространстве NEXUS" />
       <div className="w-full">
 
         {/* About Section - Full Viewport */}
-        <section className="full-section bg-black" id="about">
+        <section className="full-section bg-black relative" id="about" aria-labelledby="about-heading">
+          <CornerAnimations lineColor="bg-white" />
           <div className="w-full page-padding">
             <div className="grid gap-16 lg:gap-24">
-              <div className="grid gap-8">
+              <header className="grid gap-8">
                 <ScrollAnimatedWrapper animation="fade-in">
-                  <span className="text-subhero">О ПЛОЩАДКЕ</span>
+                  <span className="text-subhero" id="about-label">О ПЛОЩАДКЕ</span>
                 </ScrollAnimatedWrapper>
                 <ScrollAnimatedWrapper animation="fade-up" delay={100}>
-                  <h2 className="text-h1">
+                  <h2 className="text-h1" id="about-heading">
                     МНОГОФУНКЦИОНАЛЬНОЕ<br/>
                     ПРОСТРАНСТВО
                   </h2>
                 </ScrollAnimatedWrapper>
                 <ScrollAnimatedWrapper animation="fade-up" delay={200}>
-                  <p className="text-2xl md:text-3xl lg:text-4xl text-white/80 max-w-6xl">
-                    Современная площадка для проведения мероприятий любого формата.
-                    Профессиональное техническое оснащение, удобное расположение
-                    и опытная команда.
-                  </p>
+                  <div className="space-y-6">
+                    <p className="text-2xl md:text-3xl lg:text-4xl text-white/80 max-w-6xl">
+                      Современная площадка для проведения мероприятий любого формата.
+                      Профессиональное техническое оснащение, удобное расположение
+                      и опытная команда.
+                    </p>
+                    <div className="grid md:grid-cols-2 gap-6 text-lg text-white/70">
+                      <div className="space-y-2">
+                        <h4 className="text-xl font-mono uppercase tracking-wider text-white/90">Преимущества</h4>
+                        <ul className="space-y-1">
+                          <li>• Идеальное расположение в центре города</li>
+                          <li>• Гибкая планировка и зонирование</li>
+                          <li>• Полный цикл технического сопровождения</li>
+                          <li>• Опытная команда организаторов</li>
+                        </ul>
+                      </div>
+                      <div className="space-y-2">
+                        <h4 className="text-xl font-mono uppercase tracking-wider text-white/90">Возможности</h4>
+                        <ul className="space-y-1">
+                          <li>• Корпоративные мероприятия до 500 человек</li>
+                          <li>• Концерты и фестивали</li>
+                          <li>• Выставки и презентации</li>
+                          <li>• Частные праздники и торжества</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
                 </ScrollAnimatedWrapper>
-              </div>
-              <div className="grid md:grid-cols-3 gap-8">
+              </header>
+              <div className="grid md:grid-cols-3 gap-8" role="list" aria-label="Характеристики пространства">
                 {statBlocks.map((stat, index) => (
                   <ScrollAnimatedWrapper key={index} animation="scale" delay={index * 100}>
-                    <div className="card">
-                      <div className="mb-6">{stat.icon}</div>
-                      <span className="text-h3">{stat.value}</span>
+                    <article className="card h-full min-h-[300px] flex flex-col" role="listitem">
+                      <div className="mb-6" aria-hidden="true">{stat.icon}</div>
+                      <div className="text-h3" aria-label={`${stat.label}: ${stat.value}`}>{stat.value}</div>
                       <h3 className="text-2xl font-mono uppercase mt-4">{stat.label}</h3>
                       <p className="text-xl text-white/60 mt-4">{stat.description}</p>
-                    </div>
+                    </article>
                   </ScrollAnimatedWrapper>
                 ))}
               </div>
@@ -180,7 +207,8 @@ export default function HomePage() {
         </section>
 
         {/* Spaces Section - Full Viewport */}
-        <section className="full-section bg-white text-black" id="spaces">
+        <section className="full-section bg-white text-black relative" id="spaces">
+          <CornerAnimations lineColor="bg-black" />
           <div className="w-full page-padding">
             <div className="grid gap-16 lg:gap-24">
               <div className="grid gap-8">
@@ -189,19 +217,18 @@ export default function HomePage() {
                 </ScrollAnimatedWrapper>
                 <ScrollAnimatedWrapper animation="slide-right" delay={100}>
                   <h2 className="text-h1">
-                    ЗОНИРОВАНИЕ<br/>
-                    ПРОСТРАНСТВА
+                    ЗОНИРОВАНИЕ
                   </h2>
                 </ScrollAnimatedWrapper>
               </div>
               <div className="grid lg:grid-cols-3 gap-8">
                 {spaces.map((space, index) => (
                   <ScrollAnimatedWrapper key={index} animation="fade-up" delay={index * 150}>
-                    <div className="border-4 border-black p-12">
+                    <div className="border-4 border-black p-12 h-full min-h-[400px] flex flex-col">
                       <div className="mb-6">{space.icon}</div>
                       <h3 className="text-h3">{space.title}</h3>
                       <span className="text-3xl font-mono block mt-4 mb-8">{space.area}</span>
-                      <ul className="space-y-4">
+                      <ul className="space-y-4 flex-grow">
                         {space.specs.map((spec, i) => (
                           <li key={i} className="text-xl font-medium">{spec}</li>
                         ))}
@@ -215,7 +242,8 @@ export default function HomePage() {
         </section>
 
         {/* Tech Section - Full Viewport */}
-        <section className="full-section bg-black" id="tech">
+        <section className="full-section bg-black relative" id="tech">
+          <CornerAnimations lineColor="bg-white" />
           <div className="w-full page-padding">
             <div className="grid gap-16 lg:gap-24">
               <div className="grid gap-8">
@@ -248,7 +276,8 @@ export default function HomePage() {
         </section>
 
         {/* Formats Section - Full Viewport */}
-        <section className="full-section bg-white text-black" id="formats">
+        <section className="full-section bg-white text-black relative" id="formats">
+          <CornerAnimations lineColor="bg-black" />
           <div className="w-full page-padding">
             <div className="grid gap-16 lg:gap-24">
               <div className="grid gap-8">
@@ -264,7 +293,7 @@ export default function HomePage() {
               </div>
               <div className="grid lg:grid-cols-2 gap-8">
                 <ScrollAnimatedWrapper animation="slide-left">
-                  <div className="border-4 border-black p-12 lg:p-16">
+                  <div className="flex h-full flex-col border-4 border-black p-12 lg:p-16">
                     <h3 className="text-h3 mb-12">КОРПОРАТИВНЫЕ<br/>МЕРОПРИЯТИЯ</h3>
                   <ul className="space-y-6 text-2xl font-bold">
                     <li>КОНФЕРЕНЦИИ</li>
@@ -276,7 +305,7 @@ export default function HomePage() {
                   </div>
                 </ScrollAnimatedWrapper>
                 <ScrollAnimatedWrapper animation="slide-right" delay={150}>
-                  <div className="border-4 border-black p-12 lg:p-16">
+                  <div className="flex h-full flex-col border-4 border-black p-12 lg:p-16">
                     <h3 className="text-h3 mb-12">КУЛЬТУРНЫЕ<br/>СОБЫТИЯ</h3>
                   <ul className="space-y-6 text-2xl font-bold">
                     <li>КОНЦЕРТЫ</li>
@@ -293,7 +322,8 @@ export default function HomePage() {
         </section>
 
         {/* Services Section - Full Viewport */}
-        <section className="full-section bg-black" id="services">
+        <section className="full-section bg-black relative" id="services">
+          <CornerAnimations lineColor="bg-white" />
           <div className="w-full page-padding">
             <div className="grid gap-16 lg:gap-24">
               <div className="grid gap-8">
@@ -311,25 +341,43 @@ export default function HomePage() {
                 <ScrollAnimatedWrapper animation="scale">
                   <div className="card">
                     <h3 className="text-h3 mb-8">КЕЙТЕРИНГ</h3>
-                    <p className="text-2xl text-white/80 leading-relaxed">
+                    <p className="text-2xl text-white/80 leading-relaxed mb-4">
                       Организация фуршетов, банкетов и кофе-брейков от проверенных партнеров
                     </p>
+                    <ul className="text-lg text-white/60 space-y-1">
+                      <li>• Меню от шеф-поваров</li>
+                      <li>• Барное обслуживание</li>
+                      <li>• Техническое оснащение кухни</li>
+                      <li>• Сервировка и обслуживание</li>
+                    </ul>
                   </div>
                 </ScrollAnimatedWrapper>
                 <ScrollAnimatedWrapper animation="scale" delay={100}>
                   <div className="card">
                     <h3 className="text-h3 mb-8">ТЕХПОДДЕРЖКА</h3>
-                    <p className="text-2xl text-white/80 leading-relaxed">
+                    <p className="text-2xl text-white/80 leading-relaxed mb-4">
                       Полное техническое сопровождение мероприятия профессиональной командой
                     </p>
+                    <ul className="text-lg text-white/60 space-y-1">
+                      <li>• Звукорежиссеры и светотехники</li>
+                      <li>• Видеооператоры и монтажеры</li>
+                      <li>• Техническое планирование</li>
+                      <li>• Аварийное резервирование</li>
+                    </ul>
                   </div>
                 </ScrollAnimatedWrapper>
                 <ScrollAnimatedWrapper animation="scale" delay={200}>
                   <div className="card">
                     <h3 className="text-h3 mb-8">ДЕКОРИРОВАНИЕ</h3>
-                    <p className="text-2xl text-white/80 leading-relaxed">
+                    <p className="text-2xl text-white/80 leading-relaxed mb-4">
                       Оформление пространства согласно концепции вашего мероприятия
                     </p>
+                    <ul className="text-lg text-white/60 space-y-1">
+                      <li>• Тематическое оформление</li>
+                      <li>• Флористика и декор</li>
+                      <li>• Брендинг и айдентика</li>
+                      <li>• Интерактивные инсталляции</li>
+                    </ul>
                   </div>
                 </ScrollAnimatedWrapper>
               </div>
@@ -338,45 +386,52 @@ export default function HomePage() {
         </section>
 
         {/* Gallery Section - Full Viewport */}
-        <section className="full-section bg-white text-black" id="gallery">
+        <section className="full-section bg-white text-black" id="gallery" aria-labelledby="gallery-heading">
           <div className="w-full page-padding">
             <div className="grid gap-16 lg:gap-24">
-              <div className="grid gap-8">
+              <header className="grid gap-8">
                 <ScrollAnimatedWrapper animation="fade-in">
-                  <span className="text-2xl md:text-3xl font-mono uppercase tracking-[0.3em]">ГАЛЕРЕЯ</span>
+                  <span className="text-2xl md:text-3xl font-mono uppercase tracking-[0.3em]" id="gallery-label">ГАЛЕРЕЯ</span>
                 </ScrollAnimatedWrapper>
                 <ScrollAnimatedWrapper animation="fade-up" delay={100}>
-                  <h2 className="text-h1">
+                  <h2 className="text-h1" id="gallery-heading">
                     НАШЕ<br/>
                     ПРОСТРАНСТВО
                   </h2>
                 </ScrollAnimatedWrapper>
-              </div>
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+              </header>
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8" role="list" aria-label="Галерея изображений пространства NEXUS">
                 {galleryImages.map((photo, index) => (
                   <ScrollAnimatedWrapper key={index} animation="scale" delay={index * 50}>
-                    <div
+                    <figure
                       className="relative aspect-square overflow-hidden border-4 border-black group cursor-pointer"
                       onClick={() => openLightbox(index)}
+                      role="listitem"
                     >
                     <Image
-                      src={`/${photo}`}
-                      alt={`Пространство NEXUS ${index + 1}`}
+                      src={photo}
+                      alt={`Интерьер пространства NEXUS - фото ${index + 1} из ${galleryImages.length}. Многофункциональный зал для мероприятий`}
                       fill
                       className="object-cover transition-all duration-700 group-hover:scale-125"
+                      priority={index < 3}
                       sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     />
                     {/* Overlay effect on hover */}
-                    <div className="absolute inset-0 bg-black opacity-0 group-hover:opacity-40 transition-opacity duration-500" />
-                    <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                    <div className="absolute inset-0 bg-black opacity-0 group-hover:opacity-40 transition-opacity duration-500" aria-hidden="true" />
+                    <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500" aria-hidden="true">
                       <div className="text-white text-2xl font-mono uppercase tracking-wider animate-float">VIEW</div>
                     </div>
                     {/* Corner lines on hover */}
-                    <div className="absolute top-4 left-4 w-8 h-8 border-l-2 border-t-2 border-white opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                    <div className="absolute top-4 right-4 w-8 h-8 border-r-2 border-t-2 border-white opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                    <div className="absolute bottom-4 left-4 w-8 h-8 border-l-2 border-b-2 border-white opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                    <div className="absolute bottom-4 right-4 w-8 h-8 border-r-2 border-b-2 border-white opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                    </div>
+                    <div className="absolute top-4 left-4 w-8 h-8 border-l-2 border-t-2 border-white opacity-0 group-hover:opacity-100 transition-opacity duration-300" aria-hidden="true" />
+                    <div className="absolute top-4 right-4 w-8 h-8 border-r-2 border-t-2 border-white opacity-0 group-hover:opacity-100 transition-opacity duration-300" aria-hidden="true" />
+                    <div className="absolute bottom-4 left-4 w-8 h-8 border-l-2 border-b-2 border-white opacity-0 group-hover:opacity-100 transition-opacity duration-300" aria-hidden="true" />
+                    <div className="absolute bottom-4 right-4 w-8 h-8 border-r-2 border-b-2 border-white opacity-0 group-hover:opacity-100 transition-opacity duration-300" aria-hidden="true" />
+
+                    {/* Screen reader description */}
+                    <figcaption className="sr-only">
+                      Фото {index + 1} из {galleryImages.length}: Интерьер многофункционального пространства NEXUS для проведения мероприятий
+                    </figcaption>
+                    </figure>
                   </ScrollAnimatedWrapper>
                 ))}
               </div>
@@ -437,7 +492,8 @@ export default function HomePage() {
         </section>
 
         {/* Contact Form Section - Full Viewport */}
-        <section className="full-section bg-black" id="contact-form">
+        <section className="full-section bg-black relative" id="contact-form">
+          <CornerAnimations lineColor="bg-white" />
           <div className="w-full page-padding">
             <div className="grid gap-16 lg:gap-24">
               <div className="grid gap-8 text-center">
