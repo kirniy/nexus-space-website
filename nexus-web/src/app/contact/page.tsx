@@ -158,7 +158,7 @@ export default function ContactPage() {
                     {contact.icon}
                   </div>
                   <span className="text-2xl font-mono uppercase tracking-wider block mb-4">{contact.label}</span>
-                  <Link href={contact.href} className="text-h3 font-bold hover:scale-105 transition-all inline-flex items-center gap-2">
+                  <Link href={contact.href as any} className="text-h3 font-bold hover:scale-105 transition-all inline-flex items-center gap-2">
                     {contact.value}
                   </Link>
                 </div>

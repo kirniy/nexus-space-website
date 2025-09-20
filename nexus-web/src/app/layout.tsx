@@ -6,6 +6,7 @@ import { Header } from "~/components/layout/Header";
 import { LogoPattern } from "~/components/ui/LogoPattern";
 import { LoadingScreen } from "~/components/ui/LoadingScreen";
 import { ScrollScanEffect } from "~/components/ui/ScrollScanEffect";
+import { ScrollProgressBar } from "~/components/ui/ScrollProgressBar";
 import { TRPCReactProvider } from "~/trpc/provider";
 
 const inter = Inter({
@@ -48,6 +49,7 @@ export default function RootLayout({
         <TRPCReactProvider>
           <LoadingScreen />
           <ScrollScanEffect />
+          <ScrollProgressBar />
           <LogoPattern />
           <Header />
           <main id="main" className="bg-black">

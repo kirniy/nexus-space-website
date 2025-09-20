@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { useParallax } from "~/hooks/useParallax";
+import { AuroraBackground } from "~/components/ui/AuroraBackground";
 
 const heroImages = [
   "/photo_2025-09-20 00.35.13.jpeg",
@@ -57,6 +58,7 @@ export const Hero = () => {
             />
           </div>
         ))}
+        <AuroraBackground className="opacity-70" />
         <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/50 to-black/90" />
       </div>
 
@@ -156,6 +158,14 @@ export const Hero = () => {
               </div>
             </div>
           </div>
+        </div>
+      </div>
+
+      {/* Scroll cue */}
+      <div className="absolute bottom-10 left-1/2 z-20 -translate-x-1/2 hidden flex-col items-center gap-3 text-center md:flex">
+        <span className="font-mono text-xs tracking-[0.6em] text-white/60">SCROLL</span>
+        <div className="relative h-20 w-px overflow-hidden bg-white/20">
+          <div className="absolute inset-x-0 top-0 h-6 bg-gradient-to-b from-white to-transparent animate-scroll-cue" />
         </div>
       </div>
     </section>
