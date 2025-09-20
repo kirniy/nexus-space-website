@@ -76,8 +76,8 @@ export default function ContactPage() {
                 НАЙТИ
               </h2>
             </div>
-            <div className="grid lg:grid-cols-2 gap-8">
-              <div className="border-4 border-white p-12 h-full min-h-[280px] flex flex-col">
+            <div className="grid lg:grid-cols-2 gap-6 sm:gap-8">
+              <div className="border-4 border-white p-6 sm:p-8 lg:p-12 h-full min-h-[200px] sm:min-h-[280px] flex flex-col">
                 <div className="flex items-center gap-4 mb-8">
                   <IconMapPin size={32} className="text-white/60" />
                   <span className="text-2xl font-mono uppercase tracking-[0.3em] text-white/60">
@@ -104,7 +104,7 @@ export default function ContactPage() {
                 </div>
               </div>
 
-              <div className="border-4 border-white p-12 h-full min-h-[280px] flex flex-col">
+              <div className="border-4 border-white p-6 sm:p-8 lg:p-12 h-full min-h-[200px] sm:min-h-[280px] flex flex-col">
                 <div className="flex items-center gap-4 mb-8">
                   <IconClock size={32} className="text-white/60" />
                   <span className="text-2xl font-mono uppercase tracking-[0.3em] text-white/60">
@@ -129,7 +129,7 @@ export default function ContactPage() {
             </div>
 
             {/* Yandex Map Embed */}
-            <div className="w-full h-[600px] border-4 border-white">
+            <div className="w-full h-[400px] sm:h-[500px] lg:h-[600px] border-4 border-white">
               <iframe
                 src="https://yandex.ru/map-widget/v1/?um=constructor%3Adb7d4b8f3e8b3f5e8b9c5d4e3f2a1b0c&amp;source=constructor&amp;scroll=true&amp;ll=30.326028%2C59.939212&amp;z=17&amp;pt=30.326028,59.939212~pm2rdm"
                 width="100%"
@@ -156,9 +156,9 @@ export default function ContactPage() {
                 СВЯЗИ
               </h2>
             </div>
-            <div className="grid md:grid-cols-2 gap-8">
+            <div className="grid md:grid-cols-2 gap-6 sm:gap-8">
               {contacts.map((contact) => (
-                <div key={contact.value} className="border-4 border-black p-12 h-full min-h-[200px] flex flex-col">
+                <div key={contact.value} className="border-4 border-black p-6 sm:p-8 lg:p-12 h-full min-h-[150px] sm:min-h-[200px] flex flex-col">
                   <div className="mb-4 text-black/60">
                     {contact.icon}
                   </div>
