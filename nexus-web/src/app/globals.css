@@ -160,6 +160,22 @@ main {
   @apply pointer-events-none absolute inset-0 border-2 border-white/10;
 }
 
+/* Prevent card overflow on mobile */
+@media (max-width: 640px) {
+  .border-grid,
+  .border-4 {
+    max-width: calc(100vw - 2rem);
+    margin-inline: auto;
+  }
+
+  /* Ensure text wraps properly in cards */
+  .border-grid *,
+  .border-4 * {
+    word-break: break-word;
+    overflow-wrap: break-word;
+  }
+}
+
 .section-grid {
   @apply grid gap-24 md:gap-32 lg:gap-48;
 }
@@ -439,6 +455,110 @@ img, video, iframe, embed, object {
 main:focus-visible {
   outline: 2px solid white;
   outline-offset: 8px;
+}
+
+/* Date Picker Styles - NEXUS Brutalist Theme */
+.nexus-datepicker-wrapper .react-datepicker__input-container input {
+  cursor: pointer;
+}
+
+.nexus-calendar.react-datepicker {
+  background-color: black;
+  border: 4px solid white;
+  font-family: monospace;
+  font-size: 1rem;
+  box-shadow: 0 0 30px rgba(255, 255, 255, 0.3);
+}
+
+.nexus-calendar .react-datepicker__header {
+  background-color: black;
+  border-bottom: 2px solid white;
+  padding-top: 12px;
+}
+
+.nexus-calendar .react-datepicker__current-month,
+.nexus-calendar .react-datepicker__day-name {
+  color: white;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.nexus-calendar .react-datepicker__day {
+  color: white;
+  border: 1px solid transparent;
+  transition: all 0.2s;
+  width: 2.5rem;
+  height: 2.5rem;
+  line-height: 2.5rem;
+  margin: 0.2rem;
+}
+
+.nexus-calendar .react-datepicker__day:hover {
+  background-color: white;
+  color: black;
+  border: 1px solid white;
+  font-weight: bold;
+}
+
+.nexus-calendar .react-datepicker__day--selected,
+.nexus-calendar .react-datepicker__day--keyboard-selected {
+  background-color: white !important;
+  color: black !important;
+  font-weight: bold;
+  border: 2px solid white;
+}
+
+.nexus-calendar .react-datepicker__day--disabled {
+  color: rgba(255, 255, 255, 0.3);
+  cursor: not-allowed;
+}
+
+.nexus-calendar .react-datepicker__day--disabled:hover {
+  background-color: transparent;
+  color: rgba(255, 255, 255, 0.3);
+}
+
+.nexus-calendar .react-datepicker__navigation {
+  top: 12px;
+  width: 30px;
+  height: 30px;
+  border: 2px solid white;
+  background: black;
+  transition: all 0.2s;
+}
+
+.nexus-calendar .react-datepicker__navigation:hover {
+  background: white;
+}
+
+.nexus-calendar .react-datepicker__navigation-icon::before {
+  border-color: white;
+}
+
+.nexus-calendar .react-datepicker__navigation:hover .react-datepicker__navigation-icon::before {
+  border-color: black;
+}
+
+.nexus-calendar .react-datepicker__month {
+  margin: 0.4rem;
+  padding: 0.4rem;
+}
+
+.nexus-calendar .react-datepicker__day--outside-month {
+  color: rgba(255, 255, 255, 0.3);
+}
+
+.nexus-calendar .react-datepicker__triangle {
+  display: none;
+}
+
+/* Fix WhatsApp icon color - remove any green */
+[aria-label*="WhatsApp"] svg,
+.icon-whatsapp,
+svg[class*="whatsapp"] {
+  color: currentColor !important;
+  fill: currentColor !important;
 }
 
 /* Accessibility utilities */

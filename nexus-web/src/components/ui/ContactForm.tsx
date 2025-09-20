@@ -1,6 +1,9 @@
 "use client";
 
 import { useState, FormEvent } from "react";
+import DatePicker, { registerLocale } from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
+import { ru } from 'date-fns/locale/ru';
 import { api } from "~/services/api";
 import {
   IconUser,
@@ -15,7 +18,11 @@ import {
   IconX
 } from '@tabler/icons-react';
 
+// Register Russian locale
+registerLocale('ru', ru);
+
 export const ContactForm = () => {
+  const [selectedDate, setSelectedDate] = useState<Date | null>(null);
   const [formData, setFormData] = useState({
     name: "",
     company: "",
@@ -207,13 +214,25 @@ export const ContactForm = () => {
               <IconCalendar size={20} className="text-white/60" />
               ДАТА МЕРОПРИЯТИЯ
             </span>
-            <input
-              type="date"
-              name="event_date"
-              value={formData.event_date}
-              onChange={handleChange}
-              className="w-full"
-            />
+            <div className="nexus-datepicker-wrapper">
+              <DatePicker
+                selected={selectedDate}
+                onChange={(date) => {
+                  setSelectedDate(date);
+                  setFormData({
+                    ...formData,
+                    event_date: date ? date.toISOString().split('T')[0] : ''
+                  });
+                }}
+                dateFormat="dd.MM.yyyy"
+                locale="ru"
+                placeholderText="Выберите дату"
+                minDate={new Date()}
+                className="w-full border-2 border-white bg-black px-3 sm:px-4 lg:px-6 py-2 sm:py-3 lg:py-4 text-sm sm:text-base lg:text-lg xl:text-xl placeholder:text-white/40 text-white"
+                calendarClassName="nexus-calendar"
+                wrapperClassName="w-full"
+              />
+            </div>
           </label>
           <label>
             <span className="font-mono uppercase tracking-wider flex items-center gap-2">

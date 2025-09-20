@@ -21,9 +21,9 @@ const buildStyle = (
   (merged as Record<string, number>)["--slide-final-opacity"] = lineOpacity;
   (merged as Record<string, number>)["--slide-mid-opacity"] = Math.min(1, lineOpacity + 0.1);
 
-  // Responsive line dimensions using viewport units
-  const responsiveLength = `clamp(60px, ${lineLength / 2}px, ${lineLength}px)`;
-  const responsiveWidth = `min(${lineWidth}px, 0.5vw)`;
+  // Responsive line dimensions - much smaller on mobile
+  const responsiveLength = `clamp(30px, 8vw, ${lineLength}px)`;
+  const responsiveWidth = `clamp(2px, 0.3vw, ${lineWidth}px)`;
 
   if (orientation === "horizontal") {
     return {
@@ -52,9 +52,9 @@ export const CornerAnimations = ({
   const horizontalStyle = buildStyle("horizontal", lineWidth, lineLength, effectiveOpacity);
   const verticalStyle = buildStyle("vertical", lineWidth, lineLength, effectiveOpacity);
 
-  // Responsive corner wrapper with fluid sizing
+  // Responsive corner wrapper - much smaller on mobile
   const cornerWrapper = (position: string) =>
-    `pointer-events-none absolute ${position} w-[min(16rem,25vw)] h-[min(16rem,25vw)] z-[2] ${className}`;
+    `pointer-events-none absolute ${position} w-[clamp(4rem,15vw,16rem)] h-[clamp(4rem,15vw,16rem)] z-[2] ${className}`;
 
   return (
     <>
@@ -63,22 +63,22 @@ export const CornerAnimations = ({
           {/* Top Left Corner */}
           <div className={cornerWrapper("top-0 left-0")}>
             <div
-              className={`absolute top-8 left-8 ${lineColor} animate-slide-right`}
+              className={`absolute top-[clamp(0.5rem,2vw,2rem)] left-[clamp(0.5rem,2vw,2rem)] ${lineColor} animate-slide-right`}
               style={horizontalStyle}
             />
             <div
-              className={`absolute top-8 left-8 ${lineColor} animate-slide-down`}
+              className={`absolute top-[clamp(0.5rem,2vw,2rem)] left-[clamp(0.5rem,2vw,2rem)] ${lineColor} animate-slide-down`}
               style={verticalStyle}
             />
           </div>
           {/* Top Right Corner */}
           <div className={cornerWrapper("top-0 right-0")}>
             <div
-              className={`absolute top-8 right-8 ${lineColor} animate-slide-left`}
+              className={`absolute top-[clamp(0.5rem,2vw,2rem)] right-[clamp(0.5rem,2vw,2rem)] ${lineColor} animate-slide-left`}
               style={horizontalStyle}
             />
             <div
-              className={`absolute top-8 right-8 ${lineColor} animate-slide-down`}
+              className={`absolute top-[clamp(0.5rem,2vw,2rem)] right-[clamp(0.5rem,2vw,2rem)] ${lineColor} animate-slide-down`}
               style={verticalStyle}
             />
           </div>
@@ -90,22 +90,22 @@ export const CornerAnimations = ({
           {/* Bottom Left Corner */}
           <div className={cornerWrapper("bottom-0 left-0")}>
             <div
-              className={`absolute bottom-8 left-8 ${lineColor} animate-slide-right`}
+              className={`absolute bottom-[clamp(0.5rem,2vw,2rem)] left-[clamp(0.5rem,2vw,2rem)] ${lineColor} animate-slide-right`}
               style={horizontalStyle}
             />
             <div
-              className={`absolute bottom-8 left-8 ${lineColor} animate-slide-up`}
+              className={`absolute bottom-[clamp(0.5rem,2vw,2rem)] left-[clamp(0.5rem,2vw,2rem)] ${lineColor} animate-slide-up`}
               style={verticalStyle}
             />
           </div>
           {/* Bottom Right Corner */}
           <div className={cornerWrapper("bottom-0 right-0")}>
             <div
-              className={`absolute bottom-8 right-8 ${lineColor} animate-slide-left`}
+              className={`absolute bottom-[clamp(0.5rem,2vw,2rem)] right-[clamp(0.5rem,2vw,2rem)] ${lineColor} animate-slide-left`}
               style={horizontalStyle}
             />
             <div
-              className={`absolute bottom-8 right-8 ${lineColor} animate-slide-up`}
+              className={`absolute bottom-[clamp(0.5rem,2vw,2rem)] right-[clamp(0.5rem,2vw,2rem)] ${lineColor} animate-slide-up`}
               style={verticalStyle}
             />
           </div>
