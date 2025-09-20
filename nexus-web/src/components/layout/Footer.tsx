@@ -9,18 +9,18 @@ const footerLinks: FooterColumn[] = [
   {
     title: "Навигация",
     links: [
-      { label: "Афиша", href: "/events" },
+      { label: "Главная", href: "/" },
       { label: "Пространство", href: "/space" },
-      { label: "Резиденты", href: "/residents" },
-      { label: "Галерея", href: "/gallery" }
+      { label: "Галерея", href: "/gallery" },
+      { label: "Контакты", href: "/contact" }
     ]
   },
   {
     title: "Контакты",
     links: [
-      { label: "Аренда пространства", href: "mailto:rent@nexus.spb", external: true },
-      { label: "Пресс-служба", href: "mailto:press@nexus.spb", external: true },
-      { label: "Телеграм", href: "https://t.me/nexus_space", external: true }
+      { label: "Аренда пространства", href: "mailto:info@nexus-events.ru", external: true },
+      { label: "Телефон", href: "tel:+79214104440", external: true },
+      { label: "Телеграм", href: "https://t.me/nexus_event_space", external: true }
     ]
   }
 ];
@@ -34,9 +34,9 @@ export const Footer = () => {
             nexus event space
           </span>
           <p className="max-w-md text-base text-white/60">
-            NEXUS — независимое пространство электронной музыки и мультимедийных
-            перформансов в центре Санкт-Петербурга. Мы строим цифровой портал для
-            живых событий, идей и резидентов.
+            NEXUS — многофункциональное пространство для проведения мероприятий
+            в центре Санкт-Петербурга. 800 м² трансформируемого пространства
+            с профессиональным техническим оснащением.
           </p>
           <p className="text-sm uppercase text-white/40">
             © {new Date().getFullYear()} NEXUS. Все права защищены.
