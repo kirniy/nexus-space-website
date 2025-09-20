@@ -23,6 +23,14 @@ main {
   @apply bg-black;
 }
 
+/* DomeGallery styles */
+.dg-scroll-lock {
+  overflow: hidden !important;
+  position: fixed !important;
+  width: 100% !important;
+  height: 100% !important;
+}
+
 .scroll-overlay-container {
   position: fixed;
   inset: 0;
