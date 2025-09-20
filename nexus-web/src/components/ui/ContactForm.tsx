@@ -1,10 +1,19 @@
 "use client";
 
 import { useState, FormEvent } from "react";
-
-// Yandex Cloud Function endpoint for form submission
-// This will be set up in API Gateway
-const FORM_ENDPOINT = "https://d5d621jmge79dusl8rkh.kf69zffa.apigw.yandexcloud.net/api/nexus-form";
+import { api } from "~/services/api";
+import {
+  IconUser,
+  IconMail,
+  IconPhone,
+  IconCalendar,
+  IconUsers,
+  IconBuilding,
+  IconMessage,
+  IconSend,
+  IconCheck,
+  IconX
+} from '@tabler/icons-react';
 
 export const ContactForm = () => {
   const [formData, setFormData] = useState({
@@ -37,20 +46,20 @@ export const ContactForm = () => {
     setSubmitStatus({ type: null, message: "" });
 
     try {
-      const response = await fetch(FORM_ENDPOINT, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData)
+      const result = await api.submitContact({
+        name: formData.name,
+        phone: formData.phone,
+        email: formData.email,
+        message: formData.message,
+        eventDate: formData.event_date,
+        eventType: formData.event_type,
+        guests: formData.guests
       });
 
-      const result = await response.json();
-
-      if (response.ok) {
+      if (result.success) {
         setSubmitStatus({
           type: "success",
-          message: "Заявка успешно отправлена! Мы свяжемся с вами в течение 24 часов."
+          message: result.message || "Заявка успешно отправлена! Мы свяжемся с вами в течение 24 часов."
         });
         // Reset form
         setFormData({
@@ -66,7 +75,7 @@ export const ContactForm = () => {
       } else {
         setSubmitStatus({
           type: "error",
-          message: result.error || "Произошла ошибка при отправке формы. Попробуйте еще раз."
+          message: result.message || "Произошла ошибка при отправке формы. Попробуйте еще раз."
         });
       }
     } catch (error) {
@@ -88,7 +97,10 @@ export const ContactForm = () => {
       <div className="grid gap-8">
         <div className="grid gap-8 lg:grid-cols-2">
           <label>
-            <span className="font-mono uppercase tracking-wider">ИМЯ *</span>
+            <span className="font-mono uppercase tracking-wider flex items-center gap-2">
+              <IconUser size={20} className="text-white/60" />
+              ИМЯ *
+            </span>
             <input
               type="text"
               name="name"
@@ -100,7 +112,10 @@ export const ContactForm = () => {
             />
           </label>
           <label>
-            <span className="font-mono uppercase tracking-wider">КОМПАНИЯ</span>
+            <span className="font-mono uppercase tracking-wider flex items-center gap-2">
+              <IconBuilding size={20} className="text-white/60" />
+              КОМПАНИЯ
+            </span>
             <input
               type="text"
               name="company"
@@ -114,7 +129,10 @@ export const ContactForm = () => {
 
         <div className="grid gap-8 lg:grid-cols-2">
           <label>
-            <span className="font-mono uppercase tracking-wider">EMAIL *</span>
+            <span className="font-mono uppercase tracking-wider flex items-center gap-2">
+              <IconMail size={20} className="text-white/60" />
+              EMAIL *
+            </span>
             <input
               type="email"
               name="email"
@@ -126,7 +144,10 @@ export const ContactForm = () => {
             />
           </label>
           <label>
-            <span className="font-mono uppercase tracking-wider">ТЕЛЕФОН *</span>
+            <span className="font-mono uppercase tracking-wider flex items-center gap-2">
+              <IconPhone size={20} className="text-white/60" />
+              ТЕЛЕФОН *
+            </span>
             <input
               type="tel"
               name="phone"
@@ -141,7 +162,10 @@ export const ContactForm = () => {
 
         <div className="grid gap-8 lg:grid-cols-2">
           <label>
-            <span className="font-mono uppercase tracking-wider">ДАТА МЕРОПРИЯТИЯ</span>
+            <span className="font-mono uppercase tracking-wider flex items-center gap-2">
+              <IconCalendar size={20} className="text-white/60" />
+              ДАТА МЕРОПРИЯТИЯ
+            </span>
             <input
               type="date"
               name="event_date"
@@ -151,7 +175,10 @@ export const ContactForm = () => {
             />
           </label>
           <label>
-            <span className="font-mono uppercase tracking-wider">КОЛИЧЕСТВО ГОСТЕЙ</span>
+            <span className="font-mono uppercase tracking-wider flex items-center gap-2">
+              <IconUsers size={20} className="text-white/60" />
+              КОЛИЧЕСТВО ГОСТЕЙ
+            </span>
             <input
               type="number"
               name="guests"
@@ -182,7 +209,10 @@ export const ContactForm = () => {
         </label>
 
         <label>
-          <span className="font-mono uppercase tracking-wider">ДОПОЛНИТЕЛЬНАЯ ИНФОРМАЦИЯ</span>
+          <span className="font-mono uppercase tracking-wider flex items-center gap-2">
+            <IconMessage size={20} className="text-white/60" />
+            ДОПОЛНИТЕЛЬНАЯ ИНФОРМАЦИЯ
+          </span>
           <textarea
             name="message"
             rows={4}
@@ -194,17 +224,28 @@ export const ContactForm = () => {
         </label>
 
         {submitStatus.type && (
-          <div className={`p-6 border-2 ${submitStatus.type === 'success' ? 'border-green-500 text-green-500' : 'border-red-500 text-red-500'}`}>
-            {submitStatus.message}
+          <div className={`p-6 border-2 flex items-center gap-4 ${submitStatus.type === 'success' ? 'border-green-500 text-green-500' : 'border-red-500 text-red-500'}`}>
+            {submitStatus.type === 'success' ? <IconCheck size={32} /> : <IconX size={32} />}
+            <span>{submitStatus.message}</span>
           </div>
         )}
 
         <button
           type="submit"
-          className="button-primary disabled:opacity-50 disabled:cursor-not-allowed"
+          className="button-primary inline-flex items-center justify-center gap-3 disabled:opacity-50 disabled:cursor-not-allowed"
           disabled={isSubmitting}
         >
-          {isSubmitting ? "ОТПРАВКА..." : "ОТПРАВИТЬ ЗАЯВКУ"}
+          {isSubmitting ? (
+            <>
+              <IconSend size={24} className="animate-pulse" />
+              <span>ОТПРАВКА...</span>
+            </>
+          ) : (
+            <>
+              <IconSend size={24} />
+              <span>ОТПРАВИТЬ ЗАЯВКУ</span>
+            </>
+          )}
         </button>
       </div>
     </form>

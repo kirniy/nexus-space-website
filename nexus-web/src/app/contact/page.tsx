@@ -3,6 +3,16 @@ import Link from "next/link";
 import { PageSection } from "~/components/sections/PageSection";
 import { AnnouncementBanner } from "~/components/ui/AnnouncementBanner";
 import { ContactForm } from "~/components/ui/ContactForm";
+import {
+  IconPhone,
+  IconMail,
+  IconBrandWhatsapp,
+  IconBrandTelegram,
+  IconMapPin,
+  IconClock,
+  IconCalendarEvent,
+  IconArrowRight
+} from '@tabler/icons-react';
 
 export const metadata: Metadata = {
   title: "Контакты — NEXUS",
@@ -10,10 +20,10 @@ export const metadata: Metadata = {
 };
 
 const contacts = [
-  { label: "Телефон", value: "+7 (921) 410-44-40", href: "tel:+79214104440" },
-  { label: "Email", value: "info@nexus-space.ru", href: "mailto:info@nexus-space.ru" },
-  { label: "WhatsApp", value: "+7 (921) 410-44-40", href: "https://wa.me/79214104440" },
-  { label: "Telegram", value: "@nexusspb", href: "https://t.me/nexusspb" }
+  { label: "Телефон", value: "+7 (921) 410-44-40", href: "tel:+79214104440", icon: <IconPhone size={32} /> },
+  { label: "Email", value: "info@nexus-space.ru", href: "mailto:info@nexus-space.ru", icon: <IconMail size={32} /> },
+  { label: "WhatsApp", value: "+7 (921) 410-44-40", href: "https://wa.me/79214104440", icon: <IconBrandWhatsapp size={32} /> },
+  { label: "Telegram", value: "@nexusspb", href: "https://t.me/nexusspb", icon: <IconBrandTelegram size={32} /> }
 ];
 
 export default function ContactPage() {
@@ -64,9 +74,12 @@ export default function ContactPage() {
             </div>
             <div className="grid lg:grid-cols-2 gap-8">
               <div className="border-4 border-white p-12 h-full min-h-[280px] flex flex-col">
-                <span className="text-2xl font-mono uppercase tracking-[0.3em] block mb-8 text-white/60">
-                  АДРЕС
-                </span>
+                <div className="flex items-center gap-4 mb-8">
+                  <IconMapPin size={32} className="text-white/60" />
+                  <span className="text-2xl font-mono uppercase tracking-[0.3em] text-white/60">
+                    АДРЕС
+                  </span>
+                </div>
                 <div className="space-y-6">
                   <p className="text-h3 font-bold">
                     САНКТ-ПЕТЕРБУРГ<br/>
@@ -79,17 +92,21 @@ export default function ContactPage() {
                   <Link
                     href="https://yandex.ru/maps/-/CLeD4Zzc"
                     target="_blank"
-                    className="text-2xl font-mono uppercase tracking-[0.2em] hover:scale-105 transition-all inline-block text-white"
+                    className="text-2xl font-mono uppercase tracking-[0.2em] hover:scale-105 transition-all inline-flex items-center gap-2 text-white"
                   >
-                    ОТКРЫТЬ НА КАРТЕ →
+                    ОТКРЫТЬ НА КАРТЕ
+                    <IconArrowRight size={24} />
                   </Link>
                 </div>
               </div>
 
               <div className="border-4 border-white p-12 h-full min-h-[280px] flex flex-col">
-                <span className="text-2xl font-mono uppercase tracking-[0.3em] block mb-8 text-white/60">
-                  РЕЖИМ РАБОТЫ
-                </span>
+                <div className="flex items-center gap-4 mb-8">
+                  <IconClock size={32} className="text-white/60" />
+                  <span className="text-2xl font-mono uppercase tracking-[0.3em] text-white/60">
+                    РЕЖИМ РАБОТЫ
+                  </span>
+                </div>
                 <div className="space-y-4 text-xl">
                   <div className="flex justify-between">
                     <span className="text-white/80">ОФИС:</span>
@@ -137,8 +154,11 @@ export default function ContactPage() {
             <div className="grid md:grid-cols-2 gap-8">
               {contacts.map((contact) => (
                 <div key={contact.value} className="border-4 border-black p-12 h-full min-h-[200px] flex flex-col">
+                  <div className="mb-4 text-black/60">
+                    {contact.icon}
+                  </div>
                   <span className="text-2xl font-mono uppercase tracking-wider block mb-4">{contact.label}</span>
-                  <Link href={contact.href} className="text-h3 font-bold hover:scale-105 transition-all inline-block">
+                  <Link href={contact.href} className="text-h3 font-bold hover:scale-105 transition-all inline-flex items-center gap-2">
                     {contact.value}
                   </Link>
                 </div>

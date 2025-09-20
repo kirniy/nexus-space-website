@@ -8,6 +8,19 @@ import { ContactForm } from "~/components/ui/ContactForm";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
+import {
+  IconSquare,
+  IconUsers,
+  IconBuildingSkyscraper,
+  IconMusic,
+  IconBulb,
+  IconVideo,
+  IconCoffee,
+  IconShieldLock,
+  IconMapPin,
+  IconClock,
+  IconCalendarEvent
+} from '@tabler/icons-react';
 
 const marqueeItems = [
   "NEXUS EVENT SPACE",
@@ -19,16 +32,19 @@ const marqueeItems = [
 
 const statBlocks = [
   {
+    icon: <IconSquare size={40} className="text-white/60" />,
     label: "Общая площадь",
     value: "800 м²",
     description: "Трансформируемое пространство с возможностью зонирования"
   },
   {
+    icon: <IconUsers size={40} className="text-white/60" />,
     label: "Вместимость",
     value: "до 500",
     description: "человек в стоячем формате"
   },
   {
+    icon: <IconBuildingSkyscraper size={40} className="text-white/60" />,
     label: "Высота потолков",
     value: "7 м",
     description: "Возможность подвеса декораций и оборудования"
@@ -37,6 +53,7 @@ const statBlocks = [
 
 const spaces = [
   {
+    icon: <IconMusic size={36} className="text-black/60" />,
     title: "Основной зал",
     area: "600 м²",
     specs: [
@@ -47,6 +64,7 @@ const spaces = [
     ]
   },
   {
+    icon: <IconShieldLock size={36} className="text-black/60" />,
     title: "VIP-зона",
     area: "120 м²",
     specs: [
@@ -57,6 +75,7 @@ const spaces = [
     ]
   },
   {
+    icon: <IconBulb size={36} className="text-black/60" />,
     title: "Техническая зона",
     area: "80 м²",
     specs: [
@@ -148,6 +167,7 @@ export default function HomePage() {
                 {statBlocks.map((stat, index) => (
                   <ScrollAnimatedWrapper key={index} animation="scale" delay={index * 100}>
                     <div className="card">
+                      <div className="mb-6">{stat.icon}</div>
                       <span className="text-h3">{stat.value}</span>
                       <h3 className="text-2xl font-mono uppercase mt-4">{stat.label}</h3>
                       <p className="text-xl text-white/60 mt-4">{stat.description}</p>
@@ -178,6 +198,7 @@ export default function HomePage() {
                 {spaces.map((space, index) => (
                   <ScrollAnimatedWrapper key={index} animation="fade-up" delay={index * 150}>
                     <div className="border-4 border-black p-12">
+                      <div className="mb-6">{space.icon}</div>
                       <h3 className="text-h3">{space.title}</h3>
                       <span className="text-3xl font-mono block mt-4 mb-8">{space.area}</span>
                       <ul className="space-y-4">

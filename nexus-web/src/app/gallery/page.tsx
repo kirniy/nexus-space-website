@@ -4,6 +4,18 @@ import { Metadata } from "next";
 import Image from "next/image";
 import { useState } from "react";
 import { ImageLightbox } from "~/components/ui/ImageLightbox";
+import {
+  IconMusic,
+  IconBuilding,
+  IconPhoto,
+  IconCamera,
+  IconVideo,
+  IconDrone,
+  IconEdit,
+  IconCurrencyDollar,
+  IconPackage,
+  IconCheck
+} from '@tabler/icons-react';
 
 const photos = [
   "/photo_2025-09-20 00.35.13.jpeg",
@@ -99,7 +111,10 @@ export default function GalleryPage() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent" />
                 <div className="absolute bottom-0 left-0 right-0 p-8 lg:p-12">
-                  <h3 className="text-h3 mb-4">КОНЦЕРТЫ И ВЫСТУПЛЕНИЯ</h3>
+                  <div className="flex items-center gap-4 mb-4">
+                    <IconMusic size={32} />
+                    <h3 className="text-h3">КОНЦЕРТЫ И ВЫСТУПЛЕНИЯ</h3>
+                  </div>
                   <p className="text-xl text-white/80">
                     Профессиональная сцена, концертный свет и звук для выступлений любого масштаба
                   </p>
@@ -116,7 +131,10 @@ export default function GalleryPage() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent" />
                 <div className="absolute bottom-0 left-0 right-0 p-8 lg:p-12">
-                  <h3 className="text-h3 mb-4">КОРПОРАТИВНЫЕ МЕРОПРИЯТИЯ</h3>
+                  <div className="flex items-center gap-4 mb-4">
+                    <IconBuilding size={32} />
+                    <h3 className="text-h3">КОРПОРАТИВНЫЕ МЕРОПРИЯТИЯ</h3>
+                  </div>
                   <p className="text-xl text-white/80">
                     Конференции, презентации, тимбилдинги в современном оборудованном пространстве
                   </p>
@@ -140,29 +158,59 @@ export default function GalleryPage() {
             </div>
             <div className="grid lg:grid-cols-2 gap-8">
               <div className="border-4 border-black p-12 h-full min-h-[300px] flex flex-col">
-                <h3 className="text-h3 mb-8">ПРОФЕССИОНАЛЬНАЯ СЪЕМКА</h3>
+                <div className="flex items-center gap-4 mb-8">
+                  <IconCamera size={36} className="text-black/60" />
+                  <h3 className="text-h3">ПРОФЕССИОНАЛЬНАЯ СЪЕМКА</h3>
+                </div>
                 <p className="text-xl text-black/80 mb-6">
                   Мы сотрудничаем с профессиональными фотографами и видеографами,
                   которые помогут запечатлеть ваше событие.
                 </p>
                 <ul className="space-y-3 text-lg">
-                  <li>• Репортажная съемка мероприятий</li>
-                  <li>• Студийная фотосессия</li>
-                  <li>• Видеосъемка и монтаж</li>
-                  <li>• Аэросъемка</li>
+                  <li className="flex items-center gap-3">
+                    <IconPhoto size={20} className="text-black/40" />
+                    Репортажная съемка мероприятий
+                  </li>
+                  <li className="flex items-center gap-3">
+                    <IconCamera size={20} className="text-black/40" />
+                    Студийная фотосессия
+                  </li>
+                  <li className="flex items-center gap-3">
+                    <IconVideo size={20} className="text-black/40" />
+                    Видеосъемка и монтаж
+                  </li>
+                  <li className="flex items-center gap-3">
+                    <IconDrone size={20} className="text-black/40" />
+                    Аэросъемка
+                  </li>
                 </ul>
               </div>
               <div className="border-4 border-black p-12 h-full min-h-[300px] flex flex-col">
-                <h3 className="text-h3 mb-8">СТОИМОСТЬ УСЛУГ</h3>
+                <div className="flex items-center gap-4 mb-8">
+                  <IconCurrencyDollar size={36} className="text-black/60" />
+                  <h3 className="text-h3">СТОИМОСТЬ УСЛУГ</h3>
+                </div>
                 <p className="text-xl text-black/80 mb-6">
                   Услуги фото- и видеосъемки можно заказать дополнительно
                   при бронировании пространства.
                 </p>
                 <ul className="space-y-3 text-lg">
-                  <li>• Фотосъемка от 15 000 ₽</li>
-                  <li>• Видеосъемка от 25 000 ₽</li>
-                  <li>• Комплексный пакет от 35 000 ₽</li>
-                  <li>• Обработка материалов включена</li>
+                  <li className="flex items-center gap-3">
+                    <IconPhoto size={20} className="text-black/40" />
+                    Фотосъемка от 15 000 ₽
+                  </li>
+                  <li className="flex items-center gap-3">
+                    <IconVideo size={20} className="text-black/40" />
+                    Видеосъемка от 25 000 ₽
+                  </li>
+                  <li className="flex items-center gap-3">
+                    <IconPackage size={20} className="text-black/40" />
+                    Комплексный пакет от 35 000 ₽
+                  </li>
+                  <li className="flex items-center gap-3">
+                    <IconEdit size={20} className="text-black/40" />
+                    Обработка материалов включена
+                  </li>
                 </ul>
               </div>
             </div>

@@ -5,6 +5,26 @@ import Link from "next/link";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { AnnouncementBanner } from "~/components/ui/AnnouncementBanner";
+import {
+  IconSquare,
+  IconUsers,
+  IconBuildingSkyscraper,
+  IconMusic,
+  IconBulb,
+  IconVideo,
+  IconCamera,
+  IconCoffee,
+  IconShirt,
+  IconShieldLock,
+  IconSparkles,
+  IconHeadset,
+  IconTool,
+  IconFileText,
+  IconHandStop,
+  IconCalendarCheck,
+  IconCalendarEvent,
+  IconCreditCard
+} from '@tabler/icons-react';
 
 const heroImages = [
   "/photo_2025-09-20 00.35.13.jpeg",
@@ -319,29 +339,42 @@ export default function SpacePage() {
             <div className="grid gap-8">
               <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
                 <div className="border-4 border-white p-8">
-                  <div className="text-h2 mb-4">01</div>
+                  <div className="flex items-center gap-4 mb-4">
+                    <IconFileText size={32} className="text-white/60" />
+                    <div className="text-h2">01</div>
+                  </div>
                   <h3 className="text-2xl font-mono uppercase mb-4">ЗАЯВКА</h3>
                   <p className="text-lg text-white/80">Оставьте заявку через форму на сайте или позвоните</p>
                 </div>
                 <div className="border-4 border-white p-8">
-                  <div className="text-h2 mb-4">02</div>
+                  <div className="flex items-center gap-4 mb-4">
+                    <IconCalendarCheck size={32} className="text-white/60" />
+                    <div className="text-h2">02</div>
+                  </div>
                   <h3 className="text-2xl font-mono uppercase mb-4">РАСЧЕТ</h3>
                   <p className="text-lg text-white/80">Получите консультацию и расчет стоимости аренды</p>
                 </div>
                 <div className="border-4 border-white p-8">
-                  <div className="text-h2 mb-4">03</div>
+                  <div className="flex items-center gap-4 mb-4">
+                    <IconHandStop size={32} className="text-white/60" />
+                    <div className="text-h2">03</div>
+                  </div>
                   <h3 className="text-2xl font-mono uppercase mb-4">ОСМОТР</h3>
                   <p className="text-lg text-white/80">Посетите площадку для осмотра и обсуждения деталей</p>
                 </div>
                 <div className="border-4 border-white p-8">
-                  <div className="text-h2 mb-4">04</div>
+                  <div className="flex items-center gap-4 mb-4">
+                    <IconCreditCard size={32} className="text-white/60" />
+                    <div className="text-h2">04</div>
+                  </div>
                   <h3 className="text-2xl font-mono uppercase mb-4">ДОГОВОР</h3>
                   <p className="text-lg text-white/80">Подпишите договор и внесите предоплату</p>
                 </div>
               </div>
               <div className="flex justify-center mt-8">
-                <Link href="/contact" className="button-primary text-center">
-                  ЗАБРОНИРОВАТЬ
+                <Link href="/contact" className="button-primary inline-flex items-center gap-3">
+                  <IconCalendarEvent size={24} />
+                  <span>ЗАБРОНИРОВАТЬ</span>
                 </Link>
               </div>
             </div>

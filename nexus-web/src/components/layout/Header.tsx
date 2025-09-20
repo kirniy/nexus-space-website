@@ -1,11 +1,18 @@
 import Link from "next/link";
 import { AnimatedLogo } from "~/components/ui/AnimatedLogo";
+import {
+  IconHome,
+  IconBuilding,
+  IconPhoto,
+  IconMapPin,
+  IconCalendarEvent
+} from '@tabler/icons-react';
 
 const navigation = [
-  { href: "/", label: "Главная" },
-  { href: "/space", label: "Пространство" },
-  { href: "/gallery", label: "Галерея" },
-  { href: "/contact", label: "Контакты" }
+  { href: "/", label: "Главная", icon: <IconHome size={20} /> },
+  { href: "/space", label: "Пространство", icon: <IconBuilding size={20} /> },
+  { href: "/gallery", label: "Галерея", icon: <IconPhoto size={20} /> },
+  { href: "/contact", label: "Контакты", icon: <IconMapPin size={20} /> }
 ];
 
 export const Header = () => {
@@ -16,10 +23,13 @@ export const Header = () => {
           <AnimatedLogo />
         </Link>
         <nav className="hidden items-center md:flex">
-          <ul className="flex items-center gap-8 text-lg font-mono uppercase tracking-[0.15em] text-white [&_a]:border-b [&_a]:border-transparent [&_a]:transition-all [&_a:hover]:border-white [&_a:hover]:text-white">
+          <ul className="flex items-center gap-8 text-lg font-mono uppercase tracking-[0.15em] text-white">
             {navigation.map((item) => (
               <li key={item.href}>
-                <Link href={item.href} className="block">{item.label}</Link>
+                <Link href={item.href} className="inline-flex items-center gap-2 border-b border-transparent transition-all hover:border-white hover:text-white">
+                  {item.icon}
+                  <span>{item.label}</span>
+                </Link>
               </li>
             ))}
           </ul>
@@ -27,9 +37,10 @@ export const Header = () => {
         <div className="flex items-center gap-3">
           <Link
             href="/contact"
-            className="button-primary"
+            className="button-primary inline-flex items-center gap-2"
           >
-            Забронировать
+            <IconCalendarEvent size={20} />
+            <span>Забронировать</span>
           </Link>
         </div>
       </div>
