@@ -72,10 +72,10 @@ export const Hero = () => {
 
       {/* Main Content */}
       <div className="relative z-10 w-full page-padding">
-        <div className="grid gap-16 lg:gap-24">
+        <div className="grid gap-8 sm:gap-12 md:gap-16 lg:gap-24">
           {/* Text Content */}
-          <div className="grid gap-8 lg:gap-12 max-w-full">
-            <div className="text-subhero animate-fade-in mt-8">
+          <div className="grid gap-4 sm:gap-6 md:gap-8 lg:gap-12 max-w-full">
+            <div className="text-subhero animate-fade-in mt-4 sm:mt-6 md:mt-8">
               <a
                 href="https://yandex.ru/maps/-/CLeD4Zzc"
                 target="_blank"
@@ -91,20 +91,20 @@ export const Hero = () => {
               <span className="block hover:animate-glitch">ДЛЯ СОБЫТИЙ</span>
             </h1>
 
-            <p className="text-2xl md:text-3xl lg:text-4xl text-white/80 max-w-5xl font-body leading-relaxed">
+            <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl text-white/80 max-w-5xl font-body leading-relaxed px-2 sm:px-0">
               800 м² для корпоративных мероприятий, презентаций,
               концертов и частных событий. Профессиональное техническое
               оснащение и гибкая планировка.
             </p>
 
             {/* Buttons with proper spacing */}
-            <div className="flex flex-col lg:flex-row gap-8 lg:gap-12 mt-8">
+            <div className="flex flex-col sm:flex-row lg:flex-row gap-4 sm:gap-6 lg:gap-8 xl:gap-12 mt-6 sm:mt-8">
               <Link href="/contact" className="button-primary text-center">
                 ЗАБРОНИРОВАТЬ
               </Link>
               <Link
                 href="/space"
-                className="text-2xl font-mono uppercase tracking-[0.2em] text-white/60 hover:text-white transition-all self-center"
+                className="text-lg sm:text-xl md:text-2xl font-mono uppercase tracking-[0.2em] text-white/60 hover:text-white transition-all self-center"
               >
                 ХАРАКТЕРИСТИКИ →
               </Link>
@@ -112,34 +112,34 @@ export const Hero = () => {
           </div>
 
           {/* Info Cards - Moved down to avoid ticker overlap */}
-          <div className="grid md:grid-cols-3 gap-6 lg:gap-8 mb-12">
-            <div className="border-grid p-6 lg:p-10">
-              <span className="text-lg lg:text-xl font-mono uppercase tracking-[0.2em] text-white/60 block mb-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 mb-8 sm:mb-12">
+            <div className="border-grid p-4 sm:p-6 lg:p-10">
+              <span className="text-sm sm:text-base lg:text-lg xl:text-xl font-mono uppercase tracking-[0.2em] text-white/60 block mb-2 sm:mb-4">
                 ВМЕСТИМОСТЬ
               </span>
-              <div className="text-xl lg:text-2xl text-white space-y-2 font-bold">
+              <div className="text-lg sm:text-xl lg:text-2xl text-white space-y-1 sm:space-y-2 font-bold">
                 <div>ДО 500 ЧЕЛОВЕК</div>
-                <div className="text-white/60 text-base lg:text-lg">СТОЯЧИЙ ФОРМАТ</div>
+                <div className="text-white/60 text-sm sm:text-base lg:text-lg">СТОЯЧИЙ ФОРМАТ</div>
               </div>
             </div>
 
-            <div className="border-grid p-6 lg:p-10">
-              <span className="text-lg lg:text-xl font-mono uppercase tracking-[0.2em] text-white/60 block mb-4">
+            <div className="border-grid p-4 sm:p-6 lg:p-10">
+              <span className="text-sm sm:text-base lg:text-lg xl:text-xl font-mono uppercase tracking-[0.2em] text-white/60 block mb-2 sm:mb-4">
                 ПЛОЩАДЬ
               </span>
-              <div className="text-xl lg:text-2xl text-white space-y-2 font-bold">
+              <div className="text-lg sm:text-xl lg:text-2xl text-white space-y-1 sm:space-y-2 font-bold">
                 <div>800 М²</div>
-                <div className="text-white/60 text-base lg:text-lg">ТРАНСФОРМИРУЕМОЕ</div>
+                <div className="text-white/60 text-sm sm:text-base lg:text-lg">ТРАНСФОРМИРУЕМОЕ</div>
               </div>
             </div>
 
-            <div className="border-grid p-6 lg:p-10">
-              <span className="text-lg lg:text-xl font-mono uppercase tracking-[0.2em] text-white/60 block mb-4">
+            <div className="border-grid p-4 sm:p-6 lg:p-10 sm:col-span-2 md:col-span-1">
+              <span className="text-sm sm:text-base lg:text-lg xl:text-xl font-mono uppercase tracking-[0.2em] text-white/60 block mb-2 sm:mb-4">
                 ОСНАЩЕНИЕ
               </span>
-              <div className="text-xl lg:text-2xl text-white space-y-2 font-bold">
+              <div className="text-lg sm:text-xl lg:text-2xl text-white space-y-1 sm:space-y-2 font-bold">
                 <div>FULL TECH</div>
-                <div className="text-white/60 text-base lg:text-lg">СВЕТ • ЗВУК • ВИДЕО</div>
+                <div className="text-white/60 text-sm sm:text-base lg:text-lg">СВЕТ • ЗВУК • ВИДЕО</div>
               </div>
             </div>
           </div>
