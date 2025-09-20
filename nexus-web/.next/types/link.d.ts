@@ -31,8 +31,8 @@ declare namespace __next_route_internal_types__ {
   type StaticRoutes = 
     | `/api/contact`
     | `/gallery`
-    | `/`
     | `/space`
+    | `/`
     | `/contact`
   type DynamicRoutes<T extends string = string> = 
     | `/api/trpc/${SafeSlug<T>}`

@@ -162,15 +162,15 @@ export default function HomePage() {
                 </ScrollAnimatedWrapper>
                 <ScrollAnimatedWrapper animation="fade-up" delay={200}>
                   <div className="space-y-6">
-                    <p className="text-2xl md:text-3xl lg:text-4xl text-white/80 max-w-6xl">
+                    <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl text-white/80 max-w-6xl leading-relaxed">
                       Современная площадка для проведения мероприятий любого формата.
                       Профессиональное техническое оснащение, удобное расположение
                       и опытная команда.
                     </p>
-                    <div className="grid md:grid-cols-2 gap-6 text-lg text-white/70">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 text-base sm:text-lg text-white/70">
                       <div className="space-y-2">
-                        <h4 className="text-xl font-mono uppercase tracking-wider text-white/90">Преимущества</h4>
-                        <ul className="space-y-1">
+                        <h4 className="text-lg sm:text-xl font-mono uppercase tracking-wider text-white/90">Преимущества</h4>
+                        <ul className="space-y-1 leading-relaxed">
                           <li>• Идеальное расположение в центре города</li>
                           <li>• Гибкая планировка и зонирование</li>
                           <li>• Полный цикл технического сопровождения</li>
@@ -178,8 +178,8 @@ export default function HomePage() {
                         </ul>
                       </div>
                       <div className="space-y-2">
-                        <h4 className="text-xl font-mono uppercase tracking-wider text-white/90">Возможности</h4>
-                        <ul className="space-y-1">
+                        <h4 className="text-lg sm:text-xl font-mono uppercase tracking-wider text-white/90">Возможности</h4>
+                        <ul className="space-y-1 leading-relaxed">
                           <li>• Корпоративные мероприятия до 500 человек</li>
                           <li>• Концерты и фестивали</li>
                           <li>• Выставки и презентации</li>
@@ -190,14 +190,14 @@ export default function HomePage() {
                   </div>
                 </ScrollAnimatedWrapper>
               </header>
-              <div className="grid md:grid-cols-3 gap-8" role="list" aria-label="Характеристики пространства">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8" role="list" aria-label="Характеристики пространства">
                 {statBlocks.map((stat, index) => (
                   <ScrollAnimatedWrapper key={index} animation="scale" delay={index * 100}>
-                    <article className="card h-full min-h-[300px] flex flex-col" role="listitem">
-                      <div className="mb-6" aria-hidden="true">{stat.icon}</div>
-                      <div className="text-h3" aria-label={`${stat.label}: ${stat.value}`}>{stat.value}</div>
-                      <h3 className="text-2xl font-mono uppercase mt-4">{stat.label}</h3>
-                      <p className="text-xl text-white/60 mt-4">{stat.description}</p>
+                    <article className="border-4 border-white bg-black p-4 sm:p-6 lg:p-8 h-full min-h-[200px] sm:min-h-[250px] lg:min-h-[300px] flex flex-col" role="listitem">
+                      <div className="mb-3 sm:mb-4 lg:mb-6" aria-hidden="true">{stat.icon}</div>
+                      <div className="text-2xl sm:text-3xl lg:text-4xl font-black text-white mb-2 sm:mb-3 lg:mb-4" aria-label={`${stat.label}: ${stat.value}`}>{stat.value}</div>
+                      <h3 className="text-base sm:text-lg lg:text-xl font-mono uppercase mt-2 sm:mt-3 lg:mt-4 text-white leading-tight">{stat.label}</h3>
+                      <p className="text-sm sm:text-base lg:text-lg text-white/60 mt-2 sm:mt-3 lg:mt-4 leading-relaxed flex-grow">{stat.description}</p>
                     </article>
                   </ScrollAnimatedWrapper>
                 ))}
@@ -221,16 +221,16 @@ export default function HomePage() {
                   </h2>
                 </ScrollAnimatedWrapper>
               </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
                 {spaces.map((space, index) => (
                   <ScrollAnimatedWrapper key={index} animation="fade-up" delay={index * 150}>
-                    <div className="border-4 border-black p-6 sm:p-8 lg:p-12 h-full min-h-[300px] sm:min-h-[400px] flex flex-col">
-                      <div className="mb-4 sm:mb-6">{space.icon}</div>
-                      <h3 className="text-lg sm:text-xl lg:text-2xl font-bold">{space.title}</h3>
-                      <span className="text-2xl sm:text-3xl font-mono block mt-2 sm:mt-4 mb-4 sm:mb-8">{space.area}</span>
-                      <ul className="space-y-2 sm:space-y-4 flex-grow">
+                    <div className="border-4 border-black p-4 sm:p-6 lg:p-8 xl:p-12 h-full min-h-[250px] sm:min-h-[350px] lg:min-h-[400px] flex flex-col">
+                      <div className="mb-3 sm:mb-4 lg:mb-6">{space.icon}</div>
+                      <h3 className="text-base sm:text-lg lg:text-xl font-bold leading-tight">{space.title}</h3>
+                      <span className="text-xl sm:text-2xl lg:text-3xl font-mono block mt-2 sm:mt-3 lg:mt-4 mb-3 sm:mb-6 lg:mb-8">{space.area}</span>
+                      <ul className="space-y-1 sm:space-y-2 lg:space-y-3 flex-grow">
                         {space.specs.map((spec, i) => (
-                          <li key={i} className="text-base sm:text-lg lg:text-xl font-medium leading-relaxed">{spec}</li>
+                          <li key={i} className="text-sm sm:text-base lg:text-lg font-medium leading-relaxed">{spec}</li>
                         ))}
                       </ul>
                     </div>
@@ -257,14 +257,14 @@ export default function HomePage() {
                   </h2>
                 </ScrollAnimatedWrapper>
               </div>
-              <div className="grid lg:grid-cols-3 gap-8">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
                 {techSpecs.map((spec, index) => (
                   <ScrollAnimatedWrapper key={index} animation="slide-right" delay={index * 100}>
-                    <div className="card">
-                      <h3 className="text-h3 mb-8">{spec.category}</h3>
-                      <ul className="space-y-4">
+                    <div className="border-4 border-white bg-black p-4 sm:p-6 lg:p-8 h-full min-h-[200px] sm:min-h-[250px] lg:min-h-[300px] flex flex-col">
+                      <h3 className="text-lg sm:text-xl lg:text-2xl font-bold mb-4 sm:mb-6 lg:mb-8 text-white">{spec.category}</h3>
+                      <ul className="space-y-2 sm:space-y-3 lg:space-y-4 flex-grow">
                         {spec.items.map((item, i) => (
-                          <li key={i} className="text-xl text-white/80 font-mono">{item}</li>
+                          <li key={i} className="text-sm sm:text-base lg:text-lg text-white/80 font-mono leading-relaxed">{item}</li>
                         ))}
                       </ul>
                     </div>
@@ -337,14 +337,14 @@ export default function HomePage() {
                   </h2>
                 </ScrollAnimatedWrapper>
               </div>
-              <div className="grid lg:grid-cols-3 gap-8">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
                 <ScrollAnimatedWrapper animation="scale">
-                  <div className="card">
-                    <h3 className="text-h3 mb-8">КЕЙТЕРИНГ</h3>
-                    <p className="text-2xl text-white/80 leading-relaxed mb-4">
+                  <div className="border-4 border-white bg-black p-4 sm:p-6 lg:p-8 h-full min-h-[250px] sm:min-h-[300px] lg:min-h-[350px] flex flex-col">
+                    <h3 className="text-lg sm:text-xl lg:text-2xl font-bold mb-4 sm:mb-6 lg:mb-8 text-white">КЕЙТЕРИНГ</h3>
+                    <p className="text-sm sm:text-base lg:text-lg text-white/80 leading-relaxed mb-3 sm:mb-4 flex-grow">
                       Организация фуршетов, банкетов и кофе-брейков от проверенных партнеров
                     </p>
-                    <ul className="text-lg text-white/60 space-y-1">
+                    <ul className="text-xs sm:text-sm lg:text-base text-white/60 space-y-1">
                       <li>• Меню от шеф-поваров</li>
                       <li>• Барное обслуживание</li>
                       <li>• Техническое оснащение кухни</li>
@@ -353,12 +353,12 @@ export default function HomePage() {
                   </div>
                 </ScrollAnimatedWrapper>
                 <ScrollAnimatedWrapper animation="scale" delay={100}>
-                  <div className="card">
-                    <h3 className="text-h3 mb-8">ТЕХПОДДЕРЖКА</h3>
-                    <p className="text-2xl text-white/80 leading-relaxed mb-4">
+                  <div className="border-4 border-white bg-black p-4 sm:p-6 lg:p-8 h-full min-h-[250px] sm:min-h-[300px] lg:min-h-[350px] flex flex-col">
+                    <h3 className="text-lg sm:text-xl lg:text-2xl font-bold mb-4 sm:mb-6 lg:mb-8 text-white">ТЕХПОДДЕРЖКА</h3>
+                    <p className="text-sm sm:text-base lg:text-lg text-white/80 leading-relaxed mb-3 sm:mb-4 flex-grow">
                       Полное техническое сопровождение мероприятия профессиональной командой
                     </p>
-                    <ul className="text-lg text-white/60 space-y-1">
+                    <ul className="text-xs sm:text-sm lg:text-base text-white/60 space-y-1">
                       <li>• Звукорежиссеры и светотехники</li>
                       <li>• Видеооператоры и монтажеры</li>
                       <li>• Техническое планирование</li>
@@ -367,12 +367,12 @@ export default function HomePage() {
                   </div>
                 </ScrollAnimatedWrapper>
                 <ScrollAnimatedWrapper animation="scale" delay={200}>
-                  <div className="card">
-                    <h3 className="text-h3 mb-8">ДЕКОРИРОВАНИЕ</h3>
-                    <p className="text-2xl text-white/80 leading-relaxed mb-4">
+                  <div className="border-4 border-white bg-black p-4 sm:p-6 lg:p-8 h-full min-h-[250px] sm:min-h-[300px] lg:min-h-[350px] flex flex-col">
+                    <h3 className="text-lg sm:text-xl lg:text-2xl font-bold mb-4 sm:mb-6 lg:mb-8 text-white">ДЕКОРИРОВАНИЕ</h3>
+                    <p className="text-sm sm:text-base lg:text-lg text-white/80 leading-relaxed mb-3 sm:mb-4 flex-grow">
                       Оформление пространства согласно концепции вашего мероприятия
                     </p>
-                    <ul className="text-lg text-white/60 space-y-1">
+                    <ul className="text-xs sm:text-sm lg:text-base text-white/60 space-y-1">
                       <li>• Тематическое оформление</li>
                       <li>• Флористика и декор</li>
                       <li>• Брендинг и айдентика</li>
@@ -400,7 +400,7 @@ export default function HomePage() {
                   </h2>
                 </ScrollAnimatedWrapper>
               </header>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8" role="list" aria-label="Галерея изображений пространства NEXUS">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 lg:gap-6" role="list" aria-label="Галерея изображений пространства NEXUS">
                 {galleryImages.map((photo, index) => (
                   <ScrollAnimatedWrapper key={index} animation="scale" delay={index * 50}>
                     <figure

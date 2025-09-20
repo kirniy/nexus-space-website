@@ -159,7 +159,7 @@ main {
 
 /* Full width padding for massive blocks */
 .page-padding {
-  @apply px-4 sm:px-6 lg:px-8 xl:px-12 2xl:px-16;
+  @apply px-3 sm:px-4 md:px-6 lg:px-8 xl:px-12 2xl:px-16;
 }
 
 /* Massive brutalist typography as per brandbook */
@@ -350,7 +350,8 @@ main {
 
 /* Full-width layout container */
 .layout-container {
-  @apply w-full page-padding;
+  @apply w-full page-padding mx-auto;
+  max-width: 100%;
 }
 
 .grid-lines {
