@@ -20,7 +20,7 @@ const footerLinks: FooterColumn[] = [
     links: [
       { label: "Аренда пространства", href: "mailto:info@nexus-events.ru", external: true },
       { label: "Телефон", href: "tel:+79214104440", external: true },
-      { label: "Телеграм", href: "https://t.me/nexus_event_space", external: true }
+      { label: "Телеграм", href: "https://t.me/nexusspb", external: true }
     ]
   }
 ];

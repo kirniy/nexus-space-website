@@ -13,7 +13,7 @@ const contacts = [
   { label: "Телефон", value: "+7 (921) 410-44-40", href: "tel:+79214104440" },
   { label: "Email", value: "info@nexus-space.ru", href: "mailto:info@nexus-space.ru" },
   { label: "WhatsApp", value: "+7 (921) 410-44-40", href: "https://wa.me/79214104440" },
-  { label: "Telegram", value: "@nexus_event_space", href: "https://t.me/nexus_event_space" }
+  { label: "Telegram", value: "@nexusspb", href: "https://t.me/nexusspb" }
 ];
 
 export default function ContactPage() {
