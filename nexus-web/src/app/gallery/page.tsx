@@ -42,23 +42,27 @@ export default function GalleryPage() {
   return (
     <div className="w-full">
       {/* Gallery Header with 3D Dome - Full Viewport */}
-      <section className="full-section bg-black relative overflow-hidden">
-        {/* 3D Dome Gallery Background - with proper z-index */}
-        <div className="absolute inset-0" style={{ zIndex: 1 }}>
-          <DomeGallery />
+      <section className="relative min-h-screen bg-black overflow-hidden">
+        {/* 3D Dome Gallery Background */}
+        <div className="absolute inset-0 w-full h-full">
+          <DomeGallery
+            overlayBlurColor="#000000"
+            grayscale={false}
+            fit={0.6}
+            minRadius={400}
+          />
         </div>
 
         {/* Dark gradient overlay for text readability */}
         <div
-          className="absolute top-0 left-0 right-0 h-[70%] pointer-events-none"
+          className="absolute top-0 left-0 right-0 h-[70%] pointer-events-none z-10"
           style={{
-            zIndex: 5,
             background: 'linear-gradient(to bottom, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.6) 50%, transparent 100%)'
           }}
         />
 
-        {/* Content Overlay - positioned to not block DomeGallery interaction */}
-        <div className="absolute top-0 left-0 right-0 p-8 lg:p-16" style={{ zIndex: 10 }}>
+        {/* Content Overlay */}
+        <div className="absolute top-0 left-0 right-0 p-8 lg:p-16 z-20">
           <CornerAnimations lineColor="bg-white" />
           <div className="grid gap-8 max-w-7xl">
             <span className="text-subhero drop-shadow-2xl">ГАЛЕРЕЯ</span>

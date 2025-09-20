@@ -1,9 +1,3 @@
 {
-  "/_not-found/page": "app/_not-found/page.js",
-  "/api/contact/route": "app/api/contact/route.js",
-  "/api/trpc/[trpc]/route": "app/api/trpc/[trpc]/route.js",
-  "/gallery/page": "app/gallery/page.js",
-  "/page": "app/page.js",
-  "/space/page": "app/space/page.js",
-  "/contact/page": "app/contact/page.js"
+  "/gallery/page": "app/gallery/page.js"
 }
