@@ -30,14 +30,14 @@ export const LoadingScreen = () => {
   return (
     <div className="fixed inset-0 z-[9999] bg-black flex items-center justify-center">
       <div className="relative">
-        {/* Animated Logo with glow effect */}
-        <div className="relative animate-logo-pulse">
+        {/* Animated Logo with glow effect - Responsive sizing */}
+        <div className="relative animate-logo-pulse w-[min(300px,80vw)]">
           <Image
             src="/nexus-logo.svg"
             alt="NEXUS"
             width={300}
             height={100}
-            className="brightness-0 invert drop-shadow-[0_0_30px_rgba(255,255,255,0.5)]"
+            className="brightness-0 invert drop-shadow-[0_0_30px_rgba(255,255,255,0.5)] w-full h-auto"
             priority
           />
           {/* Logo glow animation */}
@@ -47,14 +47,14 @@ export const LoadingScreen = () => {
               alt="NEXUS"
               width={300}
               height={100}
-              className="brightness-0 invert"
+              className="brightness-0 invert w-full h-auto"
               priority
             />
           </div>
         </div>
 
-        {/* Enhanced Loading Bar with gradient */}
-        <div className="mt-12 w-[300px] h-[3px] bg-white/10 rounded-full overflow-hidden">
+        {/* Enhanced Loading Bar with gradient - Responsive width */}
+        <div className="mt-12 w-[min(300px,80vw)] h-[3px] bg-white/10 rounded-full overflow-hidden">
           <div
             className="h-full transition-all duration-500 ease-out rounded-full relative"
             style={{
@@ -67,30 +67,30 @@ export const LoadingScreen = () => {
           </div>
         </div>
 
-        {/* Loading Text in Russian */}
+        {/* Loading Text in Russian - Responsive text size */}
         <div className="mt-6 text-center">
-          <span className="text-white font-mono text-xl tracking-[0.3em] animate-pulse uppercase">
+          <span className="text-white font-mono text-[clamp(1rem,4vw,1.25rem)] tracking-[0.3em] animate-pulse uppercase">
             ЗАГРУЗКА
           </span>
-          <span className="text-white/60 font-mono text-lg ml-3">
+          <span className="text-white/60 font-mono text-[clamp(0.875rem,3vw,1.125rem)] ml-3">
             {Math.round(loadingProgress)}%
           </span>
         </div>
 
-        {/* Enhanced Corner Decorations - STRAIGHT ANGLES */}
-        <div className="absolute -top-20 -left-20 w-16 h-16 animate-spin" style={{ animationDuration: '8s' }}>
+        {/* Enhanced Corner Decorations - STRAIGHT ANGLES - Responsive positioning */}
+        <div className="absolute top-[-10vh] left-[-10vw] w-[min(4rem,10vw)] h-[min(4rem,10vw)] animate-spin" style={{ animationDuration: '8s' }}>
           <div className="w-full h-full border-l-2 border-t-2 border-white/80"
                style={{ filter: 'drop-shadow(0 0 10px rgba(255,255,255,0.5))' }} />
         </div>
-        <div className="absolute -top-20 -right-20 w-16 h-16 animate-spin" style={{ animationDuration: '8s', animationDirection: 'reverse' }}>
+        <div className="absolute top-[-10vh] right-[-10vw] w-[min(4rem,10vw)] h-[min(4rem,10vw)] animate-spin" style={{ animationDuration: '8s', animationDirection: 'reverse' }}>
           <div className="w-full h-full border-r-2 border-t-2 border-white/80"
                style={{ filter: 'drop-shadow(0 0 10px rgba(255,255,255,0.5))' }} />
         </div>
-        <div className="absolute -bottom-20 -left-20 w-16 h-16 animate-spin" style={{ animationDuration: '8s', animationDirection: 'reverse' }}>
+        <div className="absolute bottom-[-10vh] left-[-10vw] w-[min(4rem,10vw)] h-[min(4rem,10vw)] animate-spin" style={{ animationDuration: '8s', animationDirection: 'reverse' }}>
           <div className="w-full h-full border-l-2 border-b-2 border-white/80"
                style={{ filter: 'drop-shadow(0 0 10px rgba(255,255,255,0.5))' }} />
         </div>
-        <div className="absolute -bottom-20 -right-20 w-16 h-16 animate-spin" style={{ animationDuration: '8s' }}>
+        <div className="absolute bottom-[-10vh] right-[-10vw] w-[min(4rem,10vw)] h-[min(4rem,10vw)] animate-spin" style={{ animationDuration: '8s' }}>
           <div className="w-full h-full border-r-2 border-b-2 border-white/80"
                style={{ filter: 'drop-shadow(0 0 10px rgba(255,255,255,0.5))' }} />
         </div>

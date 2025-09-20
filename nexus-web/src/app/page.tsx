@@ -193,7 +193,7 @@ export default function HomePage() {
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8" role="list" aria-label="Характеристики пространства">
                 {statBlocks.map((stat, index) => (
                   <ScrollAnimatedWrapper key={index} animation="scale" delay={index * 100}>
-                    <article className="border-4 border-white bg-black p-4 sm:p-6 lg:p-8 h-full min-h-[200px] sm:min-h-[250px] lg:min-h-[300px] flex flex-col" role="listitem">
+                    <article className="border-4 border-white bg-black h-full flex flex-col" style={{padding: 'clamp(1rem, 3vw, 2rem)', minHeight: 'clamp(200px, 25vh, 300px)'}} role="listitem">
                       <div className="mb-3 sm:mb-4 lg:mb-6" aria-hidden="true">{stat.icon}</div>
                       <div className="text-2xl sm:text-3xl lg:text-4xl font-black text-white mb-2 sm:mb-3 lg:mb-4" aria-label={`${stat.label}: ${stat.value}`}>{stat.value}</div>
                       <h3 className="text-base sm:text-lg lg:text-xl font-mono uppercase mt-2 sm:mt-3 lg:mt-4 text-white leading-tight">{stat.label}</h3>
@@ -224,7 +224,7 @@ export default function HomePage() {
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
                 {spaces.map((space, index) => (
                   <ScrollAnimatedWrapper key={index} animation="fade-up" delay={index * 150}>
-                    <div className="border-4 border-black p-4 sm:p-6 lg:p-8 xl:p-12 h-full min-h-[250px] sm:min-h-[350px] lg:min-h-[400px] flex flex-col">
+                    <div className="border-4 border-black h-full flex flex-col" style={{padding: 'clamp(1rem, 4vw, 3rem)', minHeight: 'clamp(250px, 35vh, 400px)'}}>
                       <div className="mb-3 sm:mb-4 lg:mb-6">{space.icon}</div>
                       <h3 className="text-base sm:text-lg lg:text-xl font-bold leading-tight">{space.title}</h3>
                       <span className="text-xl sm:text-2xl lg:text-3xl font-mono block mt-2 sm:mt-3 lg:mt-4 mb-3 sm:mb-6 lg:mb-8">{space.area}</span>
@@ -260,7 +260,7 @@ export default function HomePage() {
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
                 {techSpecs.map((spec, index) => (
                   <ScrollAnimatedWrapper key={index} animation="slide-right" delay={index * 100}>
-                    <div className="border-4 border-white bg-black p-4 sm:p-6 lg:p-8 h-full min-h-[200px] sm:min-h-[250px] lg:min-h-[300px] flex flex-col">
+                    <div className="border-4 border-white bg-black h-full flex flex-col" style={{padding: 'clamp(1rem, 3vw, 2rem)', minHeight: 'clamp(200px, 25vh, 300px)'}}>
                       <h3 className="text-lg sm:text-xl lg:text-2xl font-bold mb-4 sm:mb-6 lg:mb-8 text-white">{spec.category}</h3>
                       <ul className="space-y-2 sm:space-y-3 lg:space-y-4 flex-grow">
                         {spec.items.map((item, i) => (
@@ -339,7 +339,7 @@ export default function HomePage() {
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
                 <ScrollAnimatedWrapper animation="scale">
-                  <div className="border-4 border-white bg-black p-4 sm:p-6 lg:p-8 h-full min-h-[250px] sm:min-h-[300px] lg:min-h-[350px] flex flex-col">
+                  <div className="border-4 border-white bg-black h-full flex flex-col" style={{padding: 'clamp(1rem, 3vw, 2rem)', minHeight: 'clamp(250px, 30vh, 350px)'}}>
                     <h3 className="text-lg sm:text-xl lg:text-2xl font-bold mb-4 sm:mb-6 lg:mb-8 text-white">КЕЙТЕРИНГ</h3>
                     <p className="text-sm sm:text-base lg:text-lg text-white/80 leading-relaxed mb-3 sm:mb-4 flex-grow">
                       Организация фуршетов, банкетов и кофе-брейков от проверенных партнеров
@@ -353,7 +353,7 @@ export default function HomePage() {
                   </div>
                 </ScrollAnimatedWrapper>
                 <ScrollAnimatedWrapper animation="scale" delay={100}>
-                  <div className="border-4 border-white bg-black p-4 sm:p-6 lg:p-8 h-full min-h-[250px] sm:min-h-[300px] lg:min-h-[350px] flex flex-col">
+                  <div className="border-4 border-white bg-black h-full flex flex-col" style={{padding: 'clamp(1rem, 3vw, 2rem)', minHeight: 'clamp(250px, 30vh, 350px)'}}>
                     <h3 className="text-lg sm:text-xl lg:text-2xl font-bold mb-4 sm:mb-6 lg:mb-8 text-white">ТЕХПОДДЕРЖКА</h3>
                     <p className="text-sm sm:text-base lg:text-lg text-white/80 leading-relaxed mb-3 sm:mb-4 flex-grow">
                       Полное техническое сопровождение мероприятия профессиональной командой
@@ -367,7 +367,7 @@ export default function HomePage() {
                   </div>
                 </ScrollAnimatedWrapper>
                 <ScrollAnimatedWrapper animation="scale" delay={200}>
-                  <div className="border-4 border-white bg-black p-4 sm:p-6 lg:p-8 h-full min-h-[250px] sm:min-h-[300px] lg:min-h-[350px] flex flex-col">
+                  <div className="border-4 border-white bg-black h-full flex flex-col" style={{padding: 'clamp(1rem, 3vw, 2rem)', minHeight: 'clamp(250px, 30vh, 350px)'}}>
                     <h3 className="text-lg sm:text-xl lg:text-2xl font-bold mb-4 sm:mb-6 lg:mb-8 text-white">ДЕКОРИРОВАНИЕ</h3>
                     <p className="text-sm sm:text-base lg:text-lg text-white/80 leading-relaxed mb-3 sm:mb-4 flex-grow">
                       Оформление пространства согласно концепции вашего мероприятия
@@ -469,19 +469,19 @@ export default function HomePage() {
               </ScrollAnimatedWrapper>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
                 <ScrollAnimatedWrapper animation="fade-up">
-                  <div className="border-4 border-black p-4 sm:p-6 lg:p-8 h-full min-h-[120px] sm:min-h-[150px] lg:min-h-[180px] flex flex-col">
+                  <div className="border-4 border-black h-full flex flex-col" style={{padding: 'clamp(1rem, 3vw, 2rem)', minHeight: 'clamp(120px, 15vh, 180px)'}}>
                     <h3 className="text-lg sm:text-xl lg:text-2xl font-mono uppercase tracking-[0.2em] mb-2 sm:mb-4">АДРЕС</h3>
                     <p className="text-base sm:text-lg lg:text-xl">Конюшенная площадь, 2Ж<br/>Санкт-Петербург</p>
                   </div>
                 </ScrollAnimatedWrapper>
                 <ScrollAnimatedWrapper animation="fade-up" delay={100}>
-                  <div className="border-4 border-black p-4 sm:p-6 lg:p-8 h-full min-h-[120px] sm:min-h-[150px] lg:min-h-[180px] flex flex-col">
+                  <div className="border-4 border-black h-full flex flex-col" style={{padding: 'clamp(1rem, 3vw, 2rem)', minHeight: 'clamp(120px, 15vh, 180px)'}}>
                     <h3 className="text-lg sm:text-xl lg:text-2xl font-mono uppercase tracking-[0.2em] mb-2 sm:mb-4">ТЕЛЕФОН</h3>
                     <p className="text-base sm:text-lg lg:text-xl">+7 (921) 410-44-40</p>
                   </div>
                 </ScrollAnimatedWrapper>
                 <ScrollAnimatedWrapper animation="fade-up" delay={200}>
-                  <div className="border-4 border-black p-4 sm:p-6 lg:p-8 h-full min-h-[120px] sm:min-h-[150px] lg:min-h-[180px] flex flex-col sm:col-span-2 lg:col-span-1">
+                  <div className="border-4 border-black h-full flex flex-col sm:col-span-2 lg:col-span-1" style={{padding: 'clamp(1rem, 3vw, 2rem)', minHeight: 'clamp(120px, 15vh, 180px)'}}>
                     <h3 className="text-lg sm:text-xl lg:text-2xl font-mono uppercase tracking-[0.2em] mb-2 sm:mb-4">EMAIL</h3>
                     <p className="text-base sm:text-lg lg:text-xl">info@nexus-events.ru</p>
                   </div>

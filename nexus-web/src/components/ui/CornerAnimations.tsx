@@ -21,18 +21,22 @@ const buildStyle = (
   (merged as Record<string, number>)["--slide-final-opacity"] = lineOpacity;
   (merged as Record<string, number>)["--slide-mid-opacity"] = Math.min(1, lineOpacity + 0.1);
 
+  // Responsive line dimensions using viewport units
+  const responsiveLength = `clamp(60px, ${lineLength / 2}px, ${lineLength}px)`;
+  const responsiveWidth = `min(${lineWidth}px, 0.5vw)`;
+
   if (orientation === "horizontal") {
     return {
       ...merged,
-      width: lineLength,
-      height: lineWidth,
+      width: responsiveLength,
+      height: responsiveWidth,
     };
   }
 
   return {
     ...merged,
-    width: lineWidth,
-    height: lineLength,
+    width: responsiveWidth,
+    height: responsiveLength,
   };
 };
 
@@ -48,8 +52,9 @@ export const CornerAnimations = ({
   const horizontalStyle = buildStyle("horizontal", lineWidth, lineLength, effectiveOpacity);
   const verticalStyle = buildStyle("vertical", lineWidth, lineLength, effectiveOpacity);
 
+  // Responsive corner wrapper with fluid sizing
   const cornerWrapper = (position: string) =>
-    `pointer-events-none absolute ${position} w-64 h-64 z-[2] ${className}`;
+    `pointer-events-none absolute ${position} w-[min(16rem,25vw)] h-[min(16rem,25vw)] z-[2] ${className}`;
 
   return (
     <>

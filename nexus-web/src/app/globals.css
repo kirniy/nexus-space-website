@@ -139,9 +139,16 @@ main {
   animation-delay: 12s;
 }
 
-/* Full viewport sections for brutalist design */
+/* Full viewport sections for brutalist design - Responsive container */
 .full-section {
-  @apply min-h-screen w-full relative flex items-center justify-center py-12 sm:py-16 lg:py-24 overflow-hidden;
+  /* Fluid minimum height that adapts to viewport */
+  min-height: 100vh;
+  min-height: 100dvh; /* Dynamic viewport height for mobile browsers */
+  @apply w-full relative flex items-center justify-center overflow-hidden;
+  /* Fluid vertical padding */
+  padding-block: clamp(3rem, 8vh, 6rem);
+  /* Container for responsive components */
+  container-type: inline-size;
 }
 
 .border-grid {
@@ -157,44 +164,66 @@ main {
   @apply grid gap-24 md:gap-32 lg:gap-48;
 }
 
-/* Full width padding for massive blocks */
+/* Full width padding for massive blocks - Fluid responsive spacing */
 .page-padding {
-  @apply px-3 sm:px-4 md:px-6 lg:px-8 xl:px-12 2xl:px-16;
+  /* Fluid padding that scales smoothly with viewport */
+  padding-inline: clamp(0.75rem, 2vw + 0.5rem, 4rem);
+  /* Consistent vertical rhythm */
+  padding-block: clamp(0.5rem, 1vw, 1.5rem);
 }
 
-/* Massive brutalist typography as per brandbook */
+/* Massive brutalist typography as per brandbook - Enhanced for perfect cross-platform scaling */
 .text-hero {
-  font-size: clamp(48px, 8vw, 200px);
+  /* Better mobile readability with smoother scaling */
+  font-size: clamp(2.5rem, 6vw + 1rem, 12.5rem);
   @apply font-display font-black uppercase tracking-tighter block;
-  line-height: 1;
+  /* Fluid line-height that adapts to screen size */
+  line-height: clamp(0.9, 1.1 - 0.002 * (100vw - 320px), 1);
 }
 
 .text-h1 {
-  font-size: clamp(36px, 6vw, 160px);
-  @apply font-display font-black uppercase tracking-tighter leading-[0.95];
+  /* Improved minimum size for mobile while maintaining desktop impact */
+  font-size: clamp(2rem, 5vw + 0.5rem, 10rem);
+  @apply font-display font-black uppercase tracking-tighter;
+  line-height: clamp(0.9, 1 - 0.001 * (100vw - 320px), 0.95);
 }
 
 .text-h2 {
-  font-size: clamp(28px, 5vw, 100px);
-  @apply font-display font-bold uppercase tracking-tight leading-[1];
+  /* Better scaling curve for mid-size headings */
+  font-size: clamp(1.75rem, 4vw + 0.25rem, 6.25rem);
+  @apply font-display font-bold uppercase tracking-tight;
+  line-height: clamp(0.95, 1.05 - 0.001 * (100vw - 320px), 1);
 }
 
 .text-h3 {
-  font-size: clamp(20px, 4vw, 60px);
-  @apply font-display font-bold uppercase tracking-tight leading-[1];
+  /* Readable at all sizes with smooth progression */
+  font-size: clamp(1.25rem, 3vw + 0.25rem, 3.75rem);
+  @apply font-display font-bold uppercase tracking-tight;
+  line-height: 1;
 }
 
 .text-subhero {
-  @apply text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl text-white/80 font-mono uppercase tracking-[0.3em];
+  /* Fluid subheading with better mobile scaling */
+  font-size: clamp(1rem, 2.5vw, 2.5rem);
+  @apply text-white/80 font-mono uppercase;
+  /* Responsive letter-spacing that's not too wide on mobile */
+  letter-spacing: clamp(0.1em, 0.3em, 0.4em);
 }
 
-/* Massive brutalist cards */
+/* Massive brutalist cards - Responsive with intrinsic sizing */
 .card {
-  @apply border-4 border-white bg-black p-8 sm:p-12 lg:p-16 transition-all duration-500 flex h-full flex-col;
-  min-height: 300px;
+  @apply border-4 border-white bg-black transition-all duration-500 flex flex-col;
+  /* Fluid padding that scales with viewport */
+  padding: clamp(1.5rem, 4vw, 4rem);
+  /* Fluid minimum height for consistency */
+  min-height: clamp(250px, 35vh, 400px);
+  /* Ensure full height in grid/flex layouts */
+  height: 100%;
   position: relative;
   overflow: hidden;
   isolation: isolate;
+  /* Container for responsive content */
+  container-type: inline-size;
 }
 
 .card::after {
@@ -242,6 +271,36 @@ main {
   }
 }
 
+/* Container Queries for component-level responsiveness */
+@supports (container-type: inline-size) {
+  /* Card content responsive to card size, not viewport */
+  @container (min-width: 300px) {
+    .card-title {
+      font-size: clamp(1.5rem, 8cqi, 3rem);
+    }
+  }
+
+  @container (min-width: 500px) {
+    .card-title {
+      font-size: clamp(2rem, 10cqi, 3.75rem);
+    }
+  }
+}
+
+/* Prevent horizontal overflow on all screen sizes */
+* {
+  max-width: 100%;
+}
+
+/* Ensure images and media don't overflow */
+img, video, iframe, embed, object {
+  max-width: 100%;
+  height: auto;
+  /* Modern aspect ratio support */
+  aspect-ratio: attr(width) / attr(height);
+}
+
+/* Marquee responsive speed */
 @media (max-width: 640px) {
   .marquee__inner {
     animation-duration: 18s;
@@ -299,9 +358,15 @@ main {
   @apply text-white;
 }
 
-/* Brutalist button design */
+/* Brutalist button design - Mobile-optimized with proper touch targets */
 .button-primary {
-  @apply inline-flex items-center justify-center border-2 border-white bg-black text-white text-sm sm:text-base font-mono uppercase tracking-[0.2em] px-3 sm:px-4 md:px-6 py-2 sm:py-3 transition-all duration-300 font-bold;
+  @apply inline-flex items-center justify-center border-2 border-white bg-black text-white font-mono uppercase tracking-[0.2em] transition-all duration-300 font-bold;
+  /* Fluid padding for better touch targets on mobile */
+  padding: clamp(0.75rem, 2vw, 1rem) clamp(1.25rem, 3vw, 1.5rem);
+  /* Responsive text size */
+  font-size: clamp(0.875rem, 2vw, 1rem);
+  /* Ensure minimum touch target size (44x44px) */
+  min-height: 44px;
   min-width: 120px;
   width: 100%;
   position: relative;
@@ -400,6 +465,21 @@ main:focus-visible {
   white-space: normal;
 }
 
+/* Touch-friendly link and button padding */
+a, button, [role="button"], input[type="submit"], input[type="button"] {
+  /* Ensure minimum touch target */
+  min-height: 44px;
+  /* Add invisible padding for easier tapping */
+  position: relative;
+}
+
+a::after, button::after, [role="button"]::after {
+  content: '';
+  position: absolute;
+  inset: -0.25rem;
+  /* Expand tap area without visual change */
+}
+
 /* High contrast mode support */
 @media (prefers-contrast: high) {
   .card::after {
@@ -411,9 +491,11 @@ main:focus-visible {
   }
 }
 
-/* Form enhancements */
+/* Form enhancements - Mobile-optimized */
 .form-field {
   @apply transition-all duration-300;
+  /* Ensure touch-friendly form fields */
+  min-height: 48px;
 }
 
 .form-field:focus-within {
@@ -453,10 +535,18 @@ main:focus-visible {
   }
 }
 
-/* Enhanced button interactions */
+/* Enhanced button interactions - Touch-optimized */
 .button-primary:active {
   @apply scale-95;
   transition-duration: 100ms;
+}
+
+/* Prevent text selection on double tap (mobile) */
+.button-primary, a, [role="button"] {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
 }
 
 /* Loading states */
