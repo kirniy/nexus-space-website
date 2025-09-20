@@ -1,11 +1,17 @@
+"use client";
+
 import { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
+import { useEffect, useState } from "react";
 import { AnnouncementBanner } from "~/components/ui/AnnouncementBanner";
 
-export const metadata: Metadata = {
-  title: "Пространство — NEXUS",
-  description: "Технические характеристики и возможности пространства NEXUS для проведения мероприятий в Санкт-Петербурге."
-};
+const heroImages = [
+  "/photo_2025-09-20 00.35.13.jpeg",
+  "/photo_2025-09-20 00.35.16.jpeg",
+  "/photo_2025-09-20 00.35.19.jpeg",
+  "/photo_2025-09-20 00.35.22.jpeg",
+];
 
 const stats = [
   { label: "ПЛОЩАДЬ", value: "800 М²", description: "ТРАНСФОРМИРУЕМОЕ ПРОСТРАНСТВО" },
@@ -80,11 +86,51 @@ const equipment = [
 ];
 
 export default function SpacePage() {
+  const [currentImageIndex, setCurrentImageIndex] = useState(() =>
+    Math.floor(Math.random() * heroImages.length)
+  );
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentImageIndex((prev) => (prev + 1) % heroImages.length);
+    }, 5000);
+
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <div className="w-full">
-      {/* Space Header - Full Viewport */}
-      <section className="full-section bg-black">
-        <div className="w-full page-padding">
+      {/* Space Header - Full Viewport with Background Images */}
+      <section className="full-section bg-black relative overflow-hidden">
+        {/* Rotating Background Images */}
+        <div className="absolute inset-0 z-0">
+          {heroImages.map((image, index) => (
+            <div
+              key={image}
+              className={`absolute inset-0 transition-opacity duration-1500 ${
+                index === currentImageIndex ? 'opacity-100' : 'opacity-0'
+              }`}
+            >
+              <Image
+                src={image}
+                alt="NEXUS Event Space"
+                fill
+                className="object-cover brightness-[0.3] scale-110"
+                priority={index === 0}
+                sizes="100vw"
+              />
+            </div>
+          ))}
+          <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/60 to-black/90" />
+        </div>
+
+        {/* Grid Pattern */}
+        <div className="absolute inset-0 z-[1] opacity-10">
+          <div className="absolute inset-0 bg-[linear-gradient(90deg,white_1px,transparent_1px),linear-gradient(180deg,white_1px,transparent_1px)] bg-[size:100px_100px]" />
+        </div>
+
+        {/* Content */}
+        <div className="relative z-10 w-full page-padding">
           <div className="grid gap-8">
             <span className="text-subhero">ПРОСТРАНСТВО</span>
             <h1 className="text-h1">
