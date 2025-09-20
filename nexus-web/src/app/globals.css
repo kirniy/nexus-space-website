@@ -23,6 +23,41 @@ main {
   @apply bg-black;
 }
 
+.aurora-container {
+  mix-blend-mode: screen;
+}
+
+.aurora {
+  position: absolute;
+  width: clamp(360px, 60vw, 1200px);
+  height: clamp(360px, 60vw, 1200px);
+  border-radius: 9999px;
+  filter: blur(140px);
+  opacity: 0.35;
+  will-change: transform, opacity;
+  animation: aurora-move 22s ease-in-out infinite;
+}
+
+.aurora--one {
+  background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.35), transparent 60%);
+  top: -25%;
+  left: -15%;
+}
+
+.aurora--two {
+  background: radial-gradient(circle at 70% 20%, rgba(255, 64, 153, 0.4), transparent 55%);
+  top: -30%;
+  right: -20%;
+  animation-delay: 6s;
+}
+
+.aurora--three {
+  background: radial-gradient(circle at 40% 70%, rgba(64, 158, 255, 0.35), transparent 65%);
+  bottom: -35%;
+  left: 10%;
+  animation-delay: 12s;
+}
+
 /* Full viewport sections for brutalist design */
 .full-section {
   @apply min-h-screen w-full relative flex items-center justify-center py-24;
@@ -76,12 +111,32 @@ main {
 .card {
   @apply border-4 border-white bg-black p-8 sm:p-12 lg:p-16 transition-all duration-500;
   min-height: 300px;
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.card::after {
+  content: "";
+  position: absolute;
+  inset: -60%;
+  background: conic-gradient(from 90deg, rgba(255, 255, 255, 0.12), transparent 45%, transparent 55%, rgba(255, 255, 255, 0.08));
+  opacity: 0;
+  transform: scale(0.6) rotate(12deg);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+  pointer-events: none;
+  filter: blur(12px);
 }
 
 .card:hover {
   @apply border-white shadow-2xl scale-[1.02];
   box-shadow: 0 0 100px rgba(255, 255, 255, 0.3);
   border-width: 6px;
+}
+
+.card:hover::after {
+  opacity: 0.45;
+  transform: scale(1) rotate(0deg);
 }
 
 .card-title {
@@ -109,6 +164,25 @@ main {
 @media (max-width: 640px) {
   .marquee__inner {
     animation-duration: 18s;
+  }
+}
+
+@keyframes aurora-move {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1);
+    opacity: 0.3;
+  }
+  40% {
+    transform: translate3d(6%, -4%, 0) scale(1.1);
+    opacity: 0.45;
+  }
+  70% {
+    transform: translate3d(-4%, 6%, 0) scale(1.05);
+    opacity: 0.38;
+  }
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+    opacity: 0.3;
   }
 }
 
@@ -148,6 +222,9 @@ main {
 .button-primary {
   @apply inline-flex items-center justify-center border-2 border-white bg-black text-white text-base font-mono uppercase tracking-[0.2em] px-6 py-3 transition-all duration-300 font-bold;
   min-width: 200px;
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
 }
 
 .button-primary:hover {
@@ -155,6 +232,39 @@ main {
   box-shadow: 0 0 30px rgba(255, 255, 255, 0.4);
   border-width: 3px;
   background: rgba(255, 255, 255, 0.1);
+}
+
+.button-primary::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 160%;
+  height: 160%;
+  background: radial-gradient(circle at center, rgba(255, 255, 255, 0.35), transparent 55%);
+  transform: translate(-50%, -50%) scale(0.4);
+  opacity: 0;
+  transition: transform 0.5s ease, opacity 0.5s ease;
+  pointer-events: none;
+}
+
+.button-primary:hover::before {
+  transform: translate(-50%, -50%) scale(1);
+  opacity: 0.6;
+}
+
+.button-primary::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.button-primary:hover::after {
+  opacity: 1;
 }
 
 /* Full-width layout container */
@@ -311,6 +421,20 @@ main:focus-visible {
   }
 }
 
+@keyframes scroll-cue {
+  0% {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  35% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(180%);
+    opacity: 0;
+  }
+}
+
 .animate-fade-in {
   animation: fade-in 1s ease-out;
 }
@@ -351,6 +475,10 @@ main:focus-visible {
   animation: float 4s ease-in-out infinite;
 }
 
+.animate-scroll-cue {
+  animation: scroll-cue 2s ease-in-out infinite;
+}
+
 /* Scan line effect - triggered by scrolling */
 .scan-line.scrolling::after {
   content: '';
@@ -363,4 +491,18 @@ main:focus-visible {
   animation: scan-line 2s linear 1;
   pointer-events: none;
   z-index: 100;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .aurora,
+  .animate-scroll-cue,
+  .marquee__inner {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+
+  .aurora,
+  .animate-scroll-cue {
+    animation: none !important;
+  }
 }

@@ -26,7 +26,7 @@ export const Header = () => {
           <ul className="flex items-center gap-8 text-lg font-mono uppercase tracking-[0.15em] text-white">
             {navigation.map((item) => (
               <li key={item.href}>
-                <Link href={item.href} className="inline-flex items-center gap-2 border-b border-transparent transition-all hover:border-white hover:text-white">
+                <Link href={item.href as any} className="inline-flex items-center gap-2 border-b border-transparent transition-all hover:border-white hover:text-white">
                   {item.icon}
                   <span>{item.label}</span>
                 </Link>

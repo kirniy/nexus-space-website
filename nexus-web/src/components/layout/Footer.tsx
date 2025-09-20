@@ -72,7 +72,7 @@ export const Footer = () => {
                       </span>
                     </a>
                   ) : (
-                    <Link href={link.href} className="inline-flex items-center gap-2 transition-colors hover:text-white">
+                    <Link href={link.href as any} className="inline-flex items-center gap-2 transition-colors hover:text-white">
                       {link.icon}
                       <span className="underline decoration-white/20 hover:decoration-white">
                         {link.label}
