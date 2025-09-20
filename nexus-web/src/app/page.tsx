@@ -221,16 +221,16 @@ export default function HomePage() {
                   </h2>
                 </ScrollAnimatedWrapper>
               </div>
-              <div className="grid lg:grid-cols-3 gap-8">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
                 {spaces.map((space, index) => (
                   <ScrollAnimatedWrapper key={index} animation="fade-up" delay={index * 150}>
-                    <div className="border-4 border-black p-12 h-full min-h-[400px] flex flex-col">
-                      <div className="mb-6">{space.icon}</div>
-                      <h3 className="text-h3">{space.title}</h3>
-                      <span className="text-3xl font-mono block mt-4 mb-8">{space.area}</span>
-                      <ul className="space-y-4 flex-grow">
+                    <div className="border-4 border-black p-6 sm:p-8 lg:p-12 h-full min-h-[300px] sm:min-h-[400px] flex flex-col">
+                      <div className="mb-4 sm:mb-6">{space.icon}</div>
+                      <h3 className="text-lg sm:text-xl lg:text-2xl font-bold">{space.title}</h3>
+                      <span className="text-2xl sm:text-3xl font-mono block mt-2 sm:mt-4 mb-4 sm:mb-8">{space.area}</span>
+                      <ul className="space-y-2 sm:space-y-4 flex-grow">
                         {space.specs.map((spec, i) => (
-                          <li key={i} className="text-xl font-medium">{spec}</li>
+                          <li key={i} className="text-base sm:text-lg lg:text-xl font-medium leading-relaxed">{spec}</li>
                         ))}
                       </ul>
                     </div>
@@ -291,11 +291,11 @@ export default function HomePage() {
                   </h2>
                 </ScrollAnimatedWrapper>
               </div>
-              <div className="grid lg:grid-cols-2 gap-8">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 max-w-4xl mx-auto">
                 <ScrollAnimatedWrapper animation="slide-left">
-                  <div className="flex h-full flex-col border-4 border-black p-12 lg:p-16">
-                    <h3 className="text-h3 mb-12">КОРПОРАТИВНЫЕ<br/>МЕРОПРИЯТИЯ</h3>
-                  <ul className="space-y-6 text-2xl font-bold">
+                  <div className="flex h-full flex-col border-4 border-black p-6 sm:p-8 lg:p-12 xl:p-16">
+                    <h3 className="text-lg sm:text-xl lg:text-2xl xl:text-3xl font-bold mb-6 sm:mb-8 lg:mb-12">КОРПОРАТИВНЫЕ<br/>МЕРОПРИЯТИЯ</h3>
+                  <ul className="space-y-3 sm:space-y-4 lg:space-y-6 text-lg sm:text-xl lg:text-2xl font-bold flex-grow">
                     <li>КОНФЕРЕНЦИИ</li>
                     <li>ПРЕЗЕНТАЦИИ</li>
                     <li>КОРПОРАТИВЫ</li>
@@ -305,9 +305,9 @@ export default function HomePage() {
                   </div>
                 </ScrollAnimatedWrapper>
                 <ScrollAnimatedWrapper animation="slide-right" delay={150}>
-                  <div className="flex h-full flex-col border-4 border-black p-12 lg:p-16">
-                    <h3 className="text-h3 mb-12">КУЛЬТУРНЫЕ<br/>СОБЫТИЯ</h3>
-                  <ul className="space-y-6 text-2xl font-bold">
+                  <div className="flex h-full flex-col border-4 border-black p-6 sm:p-8 lg:p-12 xl:p-16">
+                    <h3 className="text-lg sm:text-xl lg:text-2xl xl:text-3xl font-bold mb-6 sm:mb-8 lg:mb-12">КУЛЬТУРНЫЕ<br/>СОБЫТИЯ</h3>
+                  <ul className="space-y-3 sm:space-y-4 lg:space-y-6 text-lg sm:text-xl lg:text-2xl font-bold flex-grow">
                     <li>КОНЦЕРТЫ</li>
                     <li>ВЫСТАВКИ</li>
                     <li>КИНОПОКАЗЫ</li>
@@ -400,7 +400,7 @@ export default function HomePage() {
                   </h2>
                 </ScrollAnimatedWrapper>
               </header>
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8" role="list" aria-label="Галерея изображений пространства NEXUS">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8" role="list" aria-label="Галерея изображений пространства NEXUS">
                 {galleryImages.map((photo, index) => (
                   <ScrollAnimatedWrapper key={index} animation="scale" delay={index * 50}>
                     <figure
@@ -455,7 +455,7 @@ export default function HomePage() {
                 </ScrollAnimatedWrapper>
               </div>
               <ScrollAnimatedWrapper animation="fade-up" delay={200}>
-                <div className="w-full h-[600px] border-4 border-black">
+                <div className="w-full h-[400px] sm:h-[500px] lg:h-[600px] border-4 border-black">
                   <iframe
                     src="https://yandex.ru/map-widget/v1/?um=constructor%3Adb7d4b8f3e8b3f5e8b9c5d4e3f2a1b0c&amp;source=constructor&amp;scroll=true&amp;ll=30.326028%2C59.939212&amp;z=17&amp;pt=30.326028,59.939212~pm2rdm"
                     width="100%"
@@ -467,23 +467,23 @@ export default function HomePage() {
                   />
                 </div>
               </ScrollAnimatedWrapper>
-              <div className="grid lg:grid-cols-3 gap-8">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
                 <ScrollAnimatedWrapper animation="fade-up">
-                  <div className="border-4 border-black p-8 h-full min-h-[180px] flex flex-col">
-                    <h3 className="text-2xl font-mono uppercase tracking-[0.2em] mb-4">АДРЕС</h3>
-                    <p className="text-xl">Конюшенная площадь, 2Ж<br/>Санкт-Петербург</p>
+                  <div className="border-4 border-black p-4 sm:p-6 lg:p-8 h-full min-h-[120px] sm:min-h-[150px] lg:min-h-[180px] flex flex-col">
+                    <h3 className="text-lg sm:text-xl lg:text-2xl font-mono uppercase tracking-[0.2em] mb-2 sm:mb-4">АДРЕС</h3>
+                    <p className="text-base sm:text-lg lg:text-xl">Конюшенная площадь, 2Ж<br/>Санкт-Петербург</p>
                   </div>
                 </ScrollAnimatedWrapper>
                 <ScrollAnimatedWrapper animation="fade-up" delay={100}>
-                  <div className="border-4 border-black p-8 h-full min-h-[180px] flex flex-col">
-                    <h3 className="text-2xl font-mono uppercase tracking-[0.2em] mb-4">ТЕЛЕФОН</h3>
-                    <p className="text-xl">+7 (921) 410-44-40</p>
+                  <div className="border-4 border-black p-4 sm:p-6 lg:p-8 h-full min-h-[120px] sm:min-h-[150px] lg:min-h-[180px] flex flex-col">
+                    <h3 className="text-lg sm:text-xl lg:text-2xl font-mono uppercase tracking-[0.2em] mb-2 sm:mb-4">ТЕЛЕФОН</h3>
+                    <p className="text-base sm:text-lg lg:text-xl">+7 (921) 410-44-40</p>
                   </div>
                 </ScrollAnimatedWrapper>
                 <ScrollAnimatedWrapper animation="fade-up" delay={200}>
-                  <div className="border-4 border-black p-8 h-full min-h-[180px] flex flex-col">
-                    <h3 className="text-2xl font-mono uppercase tracking-[0.2em] mb-4">EMAIL</h3>
-                    <p className="text-xl">info@nexus-events.ru</p>
+                  <div className="border-4 border-black p-4 sm:p-6 lg:p-8 h-full min-h-[120px] sm:min-h-[150px] lg:min-h-[180px] flex flex-col sm:col-span-2 lg:col-span-1">
+                    <h3 className="text-lg sm:text-xl lg:text-2xl font-mono uppercase tracking-[0.2em] mb-2 sm:mb-4">EMAIL</h3>
+                    <p className="text-base sm:text-lg lg:text-xl">info@nexus-events.ru</p>
                   </div>
                 </ScrollAnimatedWrapper>
               </div>

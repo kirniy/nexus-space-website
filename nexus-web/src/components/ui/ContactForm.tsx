@@ -124,7 +124,7 @@ export const ContactForm = () => {
   return (
     <form
       onSubmit={handleSubmit}
-      className="border-4 border-white bg-black p-12 text-xl text-white [&_label]:flex [&_label]:flex-col [&_label]:gap-4 [&_input]:border-2 [&_input]:border-white [&_input]:bg-black [&_input]:px-6 [&_input]:py-4 [&_input]:text-xl [&_textarea]:border-2 [&_textarea]:border-white [&_textarea]:bg-black [&_textarea]:px-6 [&_textarea]:py-4 [&_textarea]:text-xl [&_select]:border-2 [&_select]:border-white [&_select]:bg-black [&_select]:px-6 [&_select]:py-4 [&_select]:text-xl"
+      className="border-4 border-white bg-black p-4 sm:p-6 lg:p-8 xl:p-12 text-base sm:text-lg lg:text-xl text-white [&_label]:flex [&_label]:flex-col [&_label]:gap-3 sm:[&_label]:gap-4 [&_input]:border-2 [&_input]:border-white [&_input]:bg-black [&_input]:px-3 sm:[&_input]:px-4 lg:[&_input]:px-6 [&_input]:py-2 sm:[&_input]:py-3 lg:[&_input]:py-4 [&_input]:text-sm sm:[&_input]:text-base lg:[&_input]:text-lg xl:[&_input]:text-xl [&_textarea]:border-2 [&_textarea]:border-white [&_textarea]:bg-black [&_textarea]:px-3 sm:[&_textarea]:px-4 lg:[&_textarea]:px-6 [&_textarea]:py-2 sm:[&_textarea]:py-3 lg:[&_textarea]:py-4 [&_textarea]:text-sm sm:[&_textarea]:text-base lg:[&_textarea]:text-lg xl:[&_textarea]:text-xl [&_select]:border-2 [&_select]:border-white [&_select]:bg-black [&_select]:px-3 sm:[&_select]:px-4 lg:[&_select]:px-6 [&_select]:py-2 sm:[&_select]:py-3 lg:[&_select]:py-4 [&_select]:text-sm sm:[&_select]:text-base lg:[&_select]:text-lg xl:[&_select]:text-xl"
       aria-label="Форма заявки на аренду пространства"
       noValidate
     >
@@ -267,7 +267,7 @@ export const ContactForm = () => {
 
         <button
           type="submit"
-          className="button-primary inline-flex items-center justify-center gap-3 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 hover:shadow-2xl hover:scale-[1.02] focus:ring-4 focus:ring-white/20 focus:outline-none"
+          className="button-primary disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300 hover:shadow-2xl hover:scale-[1.02] focus:ring-4 focus:ring-white/20 focus:outline-none w-full sm:w-auto"
           disabled={isSubmitting}
           aria-describedby={submitStatus.type ? "submit-status" : undefined}
         >

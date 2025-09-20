@@ -141,7 +141,7 @@ main {
 
 /* Full viewport sections for brutalist design */
 .full-section {
-  @apply min-h-screen w-full relative flex items-center justify-center py-24;
+  @apply min-h-screen w-full relative flex items-center justify-center py-12 sm:py-16 lg:py-24 overflow-hidden;
 }
 
 .border-grid {
@@ -159,7 +159,7 @@ main {
 
 /* Full width padding for massive blocks */
 .page-padding {
-  @apply px-8 sm:px-12 lg:px-16 xl:px-24;
+  @apply px-4 sm:px-6 lg:px-8 xl:px-12 2xl:px-16;
 }
 
 /* Massive brutalist typography as per brandbook */
@@ -301,8 +301,8 @@ main {
 
 /* Brutalist button design */
 .button-primary {
-  @apply inline-flex items-center justify-center border-2 border-white bg-black text-white text-base font-mono uppercase tracking-[0.2em] px-6 py-3 transition-all duration-300 font-bold;
-  min-width: 200px;
+  @apply inline-flex items-center justify-center border-2 border-white bg-black text-white text-sm sm:text-base font-mono uppercase tracking-[0.2em] px-4 sm:px-6 py-2 sm:py-3 transition-all duration-300 font-bold;
+  min-width: 140px;
   position: relative;
   overflow: hidden;
   isolation: isolate;
