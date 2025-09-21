@@ -6,9 +6,9 @@ export async function POST(request: Request) {
 
     // Telegram Bot Configuration
     const TELEGRAM_BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN || '7740627316:AAEkSJ7qLPxOXG9HTaHzVeEWAWXG3dILbac';
-    const TELEGRAM_CHAT_ID = process.env.TELEGRAM_CHAT_ID || '-4776041892';
+    const CHAT_IDS = (process.env.CHAT_IDS || '370712609,5444525103').split(',');
 
-    if (!TELEGRAM_BOT_TOKEN || !TELEGRAM_CHAT_ID) {
+    if (!TELEGRAM_BOT_TOKEN || CHAT_IDS.length === 0) {
       console.error('Telegram configuration missing');
       // Still return success to not lose the lead
       return NextResponse.json({
@@ -57,46 +57,52 @@ export async function POST(request: Request) {
     if (data.message) message += `\n💬 <b>Сообщение:</b>\n${data.message}\n`;
     message += `\n#nexus #заявка`;
 
-    // Send to Telegram
+    // Send to Telegram - to multiple chat IDs
     const telegramUrl = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
 
-    try {
-      const response = await fetch(telegramUrl, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          chat_id: TELEGRAM_CHAT_ID,
-          text: message,
-          parse_mode: 'HTML'
-        })
-      });
+    let allSuccess = true;
 
-      const result = await response.json();
-
-      if (!response.ok) {
-        console.error('Telegram API error:', result);
-        // Still return success to not lose the lead
-        return NextResponse.json({
-          success: true,
-          message: 'Заявка принята. Если мы не свяжемся в течение часа, позвоните: +7 (921) 410-44-40'
+    // Send to each chat ID
+    for (const chatId of CHAT_IDS) {
+      try {
+        const response = await fetch(telegramUrl, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            chat_id: chatId.trim(),
+            text: message,
+            parse_mode: 'HTML'
+          })
         });
+
+        const result = await response.json();
+
+        if (!response.ok) {
+          console.error(`Telegram API error for chat ${chatId}:`, result);
+          allSuccess = false;
+        } else {
+          console.log(`Successfully sent to chat ${chatId}`);
+        }
+      } catch (telegramError) {
+        console.error(`Telegram send error for chat ${chatId}:`, telegramError);
+        allSuccess = false;
       }
+    }
 
+    if (!allSuccess) {
+      // At least one send failed, but still return success to not lose the lead
       return NextResponse.json({
         success: true,
-        message: 'Спасибо! Мы получили вашу заявку и свяжемся с вами в ближайшее время.'
-      });
-
-    } catch (telegramError) {
-      console.error('Telegram send error:', telegramError);
-      // Still return success to not lose the lead
-      return NextResponse.json({
-        success: true,
-        message: 'Заявка отправлена. Мы свяжемся с вами в ближайшее время.'
+        message: 'Заявка принята. Если мы не свяжемся в течение часа, позвоните: +7 (921) 410-44-40'
       });
     }
+
+    return NextResponse.json({
+      success: true,
+      message: 'Спасибо! Мы получили вашу заявку и свяжемся с вами в ближайшее время.'
+    });
 
   } catch (error) {
     console.error('Contact form error:', error);
