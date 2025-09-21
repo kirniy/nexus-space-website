@@ -40,7 +40,7 @@ const DEFAULT_IMAGES: ImageItem[] = [
   "/photo_2025-09-20_00-35-18.jpeg",
   "/photo_2025-09-20_00-35-19.jpeg",
   "/photo_2025-09-20_00-35-22.jpeg",
-  "/photo_2025-09-20_00-35-23.jpeg"
+  "/photo_2025-09-20_00-35-23.jpeg",
 ];
 
 const DEFAULTS = {
@@ -177,7 +177,12 @@ export default function DomeGallery({
     document.body.classList.remove('dg-scroll-lock');
   }, []);
 
-  const items = useMemo(() => buildItems(images, segments), [images, segments]);
+  const items = useMemo(() => {
+    const builtItems = buildItems(images, segments);
+    console.log('DomeGallery items:', builtItems);
+    console.log('Images array:', images);
+    return builtItems;
+  }, [images, segments]);
 
   const applyTransform = (xDeg: number, yDeg: number) => {
     const el = sphereRef.current;
@@ -222,6 +227,11 @@ export default function DomeGallery({
       lockedRadiusRef.current = Math.round(radius);
 
       const viewerPad = Math.max(8, Math.round(minDim * padFactor));
+      console.log('Setting CSS variables:', {
+        radius: lockedRadiusRef.current,
+        viewerPad,
+        dimensions: { w, h }
+      });
       root.style.setProperty('--radius', `${lockedRadiusRef.current}px`);
       root.style.setProperty('--viewer-pad', `${viewerPad}px`);
       root.style.setProperty('--overlay-blur-color', overlayBlurColor);
@@ -674,6 +684,9 @@ export default function DomeGallery({
       transform: translateZ(calc(var(--radius) * -1));
       will-change: transform;
       position: absolute;
+      /* Debug: make sphere visible */
+      width: 100px;
+      height: 100px;
     }
 
     .sphere-item {
@@ -705,6 +718,16 @@ export default function DomeGallery({
       }
     }
 
+    /* body.dg-scroll-lock {
+      position: fixed !important;
+      top: 0;
+      left: 0;
+      width: 100% !important;
+      height: 100% !important;
+      overflow: hidden !important;
+      touch-action: none !important;
+      overscroll-behavior: contain !important;
+    } */
     .item__image {
       position: absolute;
       inset: 10px;
@@ -730,7 +753,7 @@ export default function DomeGallery({
       <style dangerouslySetInnerHTML={{ __html: cssStyles }} />
       <div
         ref={rootRef}
-        className="sphere-root relative w-full h-full"
+        className="sphere-root relative w-full h-full bg-red-500/10"
         style={
           {
             ['--segments-x' as any]: segments,
@@ -744,14 +767,14 @@ export default function DomeGallery({
       >
         <main
           ref={mainRef}
-          className="absolute inset-0 grid place-items-center overflow-hidden select-none bg-transparent"
+          className="absolute inset-0 grid place-items-center overflow-hidden select-none bg-green-500/10"
           style={{
             touchAction: 'none',
             WebkitUserSelect: 'none'
           }}
         >
-          <div className="stage">
-            <div ref={sphereRef} className="sphere">
+          <div className="stage bg-blue-500/10">
+            <div ref={sphereRef} className="sphere bg-yellow-500/10">
               {items.map((it, i) => (
                 <div
                   key={`${it.x},${it.y},${i}`}
