@@ -27,7 +27,7 @@ yc serverless function version create \
   --memory 128m \
   --execution-timeout 10s \
   --source-path telegram-form.zip \
-  --environment BOT_TOKEN=7740627316:AAEkSJ7qLPxOXG9HTaHzVeEWAWXG3dILbac \
+  --environment BOT_TOKEN=102934750:AAE9kVClDad9yAyk8f2cYhrcsYqJeDybfLo \
   --environment CHAT_IDS=429156227,433491
 ```
 
@@ -98,12 +98,13 @@ curl -X POST https://<YOUR-API-GATEWAY-ID>.apigw.yandexcloud.net/api/nexus-form 
 
 ## Environment Variables
 
-- `BOT_TOKEN`: Telegram bot token (same as VNVNC)
-- `CHAT_IDS`: Comma-separated list of Telegram chat IDs to send notifications
+- `BOT_TOKEN`: Telegram bot token - `102934750:AAE9kVClDad9yAyk8f2cYhrcsYqJeDybfLo`
+- `CHAT_IDS`: Comma-separated list of Telegram chat IDs - `429156227,433491`
 
 ## Notes
 
-- The function uses the same Telegram bot as the VNVNC website
-- Messages are tagged with "NEXUS" to distinguish from VNVNC submissions
+- The function uses the NEXUS Telegram bot (@nexus_space_bot)
+- Messages are tagged with "NEXUS" to distinguish from other submissions
 - All times are in Moscow timezone
 - The function handles CORS automatically for browser requests
+- API endpoint is available at: `https://d5d621jmge79dusl8rkh.kf69zffa.apigw.yandexcloud.net/api/nexus-form`
