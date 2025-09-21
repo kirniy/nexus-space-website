@@ -656,7 +656,7 @@ export default function DomeGallery({
 
   const cssStyles = `
     .sphere-root {
-      --radius: 520px;
+      --radius: 800px;
       --viewer-pad: 72px;
       --circ: calc(var(--radius) * 3.14);
       --rot-y: calc((360deg / var(--segments-x)) / 2);
@@ -685,8 +685,9 @@ export default function DomeGallery({
       will-change: transform;
       position: absolute;
       /* Debug: make sphere visible */
-      width: 100px;
-      height: 100px;
+      width: 200px;
+      height: 200px;
+      pointer-events: none;
     }
 
     .sphere-item {
@@ -753,7 +754,7 @@ export default function DomeGallery({
       <style dangerouslySetInnerHTML={{ __html: cssStyles }} />
       <div
         ref={rootRef}
-        className="sphere-root relative w-full h-full bg-red-500/10"
+        className="sphere-root relative w-full h-full"
         style={
           {
             ['--segments-x' as any]: segments,
@@ -767,14 +768,16 @@ export default function DomeGallery({
       >
         <main
           ref={mainRef}
-          className="absolute inset-0 grid place-items-center overflow-hidden select-none bg-green-500/10"
+          className="absolute inset-0 grid place-items-center overflow-hidden select-none"
           style={{
             touchAction: 'none',
-            WebkitUserSelect: 'none'
+            WebkitUserSelect: 'none',
+            pointerEvents: 'auto',
+            zIndex: 1
           }}
         >
-          <div className="stage bg-blue-500/10">
-            <div ref={sphereRef} className="sphere bg-yellow-500/10">
+          <div className="stage">
+            <div ref={sphereRef} className="sphere">
               {items.map((it, i) => (
                 <div
                   key={`${it.x},${it.y},${i}`}

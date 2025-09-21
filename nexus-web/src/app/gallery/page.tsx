@@ -32,21 +32,21 @@ export default function GalleryPage() {
       {/* Gallery Header - Full Viewport */}
       <section className="relative min-h-screen bg-black">
         {/* 3D Dome Gallery Background */}
-        <div className="absolute inset-0 w-full h-full overflow-hidden">
+        <div className="absolute inset-0 w-full h-full overflow-hidden z-0">
           <DomeGallery
             images={photos}
-            minRadius={200}
-            maxRadius={600}
-            fit={0.4}
-            grayscale={false}
+            minRadius={400}
+            maxRadius={1200}
+            fit={0.85}
+            grayscale={true}
             imageBorderRadius="12px"
-            dragSensitivity={20}
+            dragSensitivity={15}
             overlayBlurColor="rgba(0, 0, 0, 0.8)"
           />
         </div>
 
         {/* Content Overlay */}
-        <div className="relative z-10 min-h-screen flex flex-col justify-center p-8 lg:p-16">
+        <div className="relative z-10 min-h-screen flex flex-col justify-center p-8 lg:p-16 pointer-events-none">
           <CornerAnimations lineColor="bg-white" />
           <div className="max-w-7xl mx-auto w-full">
             <div className="grid gap-8">
@@ -64,7 +64,7 @@ export default function GalleryPage() {
               <div className="mt-8">
                 <button
                   onClick={() => document.getElementById('gallery-grid')?.scrollIntoView({ behavior: 'smooth' })}
-                  className="inline-flex items-center gap-3 px-8 py-4 bg-white text-black font-bold text-lg hover:bg-white/90 transition-all"
+                  className="inline-flex items-center gap-3 px-8 py-4 bg-white text-black font-bold text-lg hover:bg-white/90 transition-all pointer-events-auto"
                 >
                   СМОТРЕТЬ ГАЛЕРЕЮ
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
