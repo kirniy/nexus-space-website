@@ -27,8 +27,8 @@ yc serverless function version create \
   --memory 128m \
   --execution-timeout 10s \
   --source-path telegram-form.zip \
-  --environment BOT_TOKEN=8159622033:AAGIJbyBHqaAH8c9fUYEfzQcJ0gzTcxV1GM \
-  --environment CHAT_IDS=370712609,5444525103
+  --environment BOT_TOKEN=7740627316:AAEkSJ7qLPxOXG9HTaHzVeEWAWXG3dILbac \
+  --environment CHAT_IDS=429156227,433491
 ```
 
 ### 3. Create API Gateway

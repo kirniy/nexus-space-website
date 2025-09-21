@@ -4,9 +4,9 @@
 const https = require('https');
 
 // Environment variables (set in Yandex Cloud Function)
-// Same bot token and chat ID as VNVNC
-const BOT_TOKEN = process.env.BOT_TOKEN || '8159622033:AAGIJbyBHqaAH8c9fUYEfzQcJ0gzTcxV1GM';
-const CHAT_IDS = (process.env.CHAT_IDS || '370712609,5444525103').split(',');
+// Bot token and chat IDs for NEXUS Telegram notifications
+const BOT_TOKEN = process.env.BOT_TOKEN || '7740627316:AAEkSJ7qLPxOXG9HTaHzVeEWAWXG3dILbac';
+const CHAT_IDS = (process.env.CHAT_IDS || '429156227,433491').split(',');
 
 function sendTelegramMessage(chatId, message) {
     return new Promise((resolve, reject) => {
