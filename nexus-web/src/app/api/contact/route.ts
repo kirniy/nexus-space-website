@@ -5,7 +5,7 @@ export async function POST(request: Request) {
     const data = await request.json();
 
     // Telegram Bot Configuration
-    const TELEGRAM_BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN || '7740627316:AAEkSJ7qLPxOXG9HTaHzVeEWAWXG3dILbac';
+    const TELEGRAM_BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN || '102934750:AAE9kVClDad9yAyk8f2cYhrcsYqJeDybfLo';
     const CHAT_IDS = (process.env.CHAT_IDS || '429156227,433491').split(',');
 
     if (!TELEGRAM_BOT_TOKEN || CHAT_IDS.length === 0) {

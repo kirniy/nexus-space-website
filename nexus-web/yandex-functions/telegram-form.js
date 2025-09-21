@@ -5,7 +5,7 @@ const https = require('https');
 
 // Environment variables (set in Yandex Cloud Function)
 // Bot token and chat IDs for NEXUS Telegram notifications
-const BOT_TOKEN = process.env.BOT_TOKEN || '7740627316:AAEkSJ7qLPxOXG9HTaHzVeEWAWXG3dILbac';
+const BOT_TOKEN = process.env.BOT_TOKEN || '102934750:AAE9kVClDad9yAyk8f2cYhrcsYqJeDybfLo';
 const CHAT_IDS = (process.env.CHAT_IDS || '429156227,433491').split(',');
 
 function sendTelegramMessage(chatId, message) {
