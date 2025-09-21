@@ -6,7 +6,7 @@ export async function POST(request: Request) {
 
     // Telegram Bot Configuration
     const TELEGRAM_BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN || '7740627316:AAEkSJ7qLPxOXG9HTaHzVeEWAWXG3dILbac';
-    const CHAT_IDS = (process.env.CHAT_IDS || '370712609,5444525103').split(',');
+    const CHAT_IDS = (process.env.CHAT_IDS || '429156227,433491').split(',');
 
     if (!TELEGRAM_BOT_TOKEN || CHAT_IDS.length === 0) {
       console.error('Telegram configuration missing');
